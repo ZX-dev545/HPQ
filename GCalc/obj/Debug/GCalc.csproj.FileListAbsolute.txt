@@ -1,0 +1,14 @@
+C:\Users\Hamish\source\repos\GCalc\GCalc\bin\Debug\GCalc.exe.config
+C:\Users\Hamish\source\repos\GCalc\GCalc\bin\Debug\GCalc.exe
+C:\Users\Hamish\source\repos\GCalc\GCalc\bin\Debug\GCalc.pdb
+C:\Users\Hamish\source\repos\GCalc\GCalc\bin\Debug\Liber.dll
+C:\Users\Hamish\source\repos\GCalc\GCalc\bin\Debug\Liber.pdb
+C:\Users\Hamish\source\repos\GCalc\GCalc\obj\Debug\GCalc.csprojAssemblyReference.cache
+C:\Users\Hamish\source\repos\GCalc\GCalc\obj\Debug\GCalc.Properties.Resources.resources
+C:\Users\Hamish\source\repos\GCalc\GCalc\obj\Debug\GCalc.csproj.GenerateResource.cache
+C:\Users\Hamish\source\repos\GCalc\GCalc\obj\Debug\GCalc.csproj.CoreCompileInputs.cache
+C:\Users\Hamish\source\repos\GCalc\GCalc\obj\Debug\GCalc.csproj.CopyComplete
+C:\Users\Hamish\source\repos\GCalc\GCalc\obj\Debug\GCalc.exe
+C:\Users\Hamish\source\repos\GCalc\GCalc\obj\Debug\GCalc.pdb
+C:\Users\Hamish\source\repos\GCalc\GCalc\obj\Debug\GCalc.parts.resources
+C:\Users\Hamish\source\repos\GCalc\GCalc\obj\Debug\GCalc.Window.resources

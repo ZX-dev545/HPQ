@@ -17,7 +17,7 @@ namespace GCalc
 {
     public partial class Window : Engine
     {
-        class box
+        class Tile
         {
             public formula def;
             public tensor sub;
@@ -25,7 +25,7 @@ namespace GCalc
             public Panel pan;
             public TextBox text;
 
-            public box(Window v, Rectangle bnds, tensor t = null, formula f = null)
+            public Tile(Window v, Rectangle bnds, tensor t = null, formula f = null)
             {
                 def = f;
                 sub = t;
@@ -69,63 +69,63 @@ namespace GCalc
                 /*if (text.Text.Last() == '+')
                 {
                     Debug.Write("+");
-                    var novus = new term(new List<aestimatus>(), new List<aestimatus>());
+                    var novus = new term(new List<coefficient>(), new List<coefficient>());
                     for()
                 }*/
             }
         }
 
-        interface aestimatus { tensor valor(params tensor[] vars); }
-        class tensor : aestimatus
+        interface coefficient { tensor Value(params tensor[] vars); }
+        class tensor : coefficient
         {
-            public List<List<double>> pares;
-            public int rows { get { return pares.Count; } }
-            public int cols { get { return pares[0].Count; } }
+            public List<List<double>> parts;
+            public int rows { get { return parts.Count; } }
+            public int cols { get { return parts[0].Count; } }
             public bool param;
             public string name;
 
             public tensor() { }
-            public tensor(double[,] parts, string name = null, bool param = false)
+            public tensor(double[,] bits, string name = null, bool param = false)
             {
-                pares = new List<List<double>>();
-                for (int i = 0; i < parts.GetLength(0); i++)
-                { pares.Add(new List<double>()); for (int j = 0; j < parts.GetLength(1); j++) { pares[i].Add(parts[i, j]); } }
+                parts = new List<List<double>>();
+                for (int i = 0; i < bits.GetLength(0); i++)
+                { parts.Add(new List<double>()); for (int j = 0; j < bits.GetLength(1); j++) { parts[i].Add(bits[i, j]); } }
 
                 this.param = param;
                 this.name = name;
             }
-            public tensor(List<List<double>> parts, string name = null, bool param = false)
+            public tensor(List<List<double>> bits, string name = null, bool param = false)
             {
                 this.param = param;
                 this.name = name;
-                pares = parts;
+                parts = bits;
             }
-            public tensor(List<double> parts, string name = null, bool param = false)
+            public tensor(List<double> bits, string name = null, bool param = false)
             {
                 this.param = param;
                 this.name = name;
-                pares = new List<List<double>>() { parts };
+                parts = new List<List<double>>() { bits };
             }
             public tensor(double part, string name = null, bool param = false)
             {
                 this.param = param;
                 this.name = name;
-                pares = new List<List<double>>() { new List<double> { part } };
+                parts = new List<List<double>>() { new List<double> { part } };
             }
 
-            public tensor valor(params tensor[] vars) { return this; }
+            public tensor Value(params tensor[] vars) { return this; }
 
             public tensor add(tensor b)
             {
                 if (rows == b.rows && cols == b.cols)
                 {
-                    var parts = new List<List<double>>();
+                    var bits = new List<List<double>>();
                     for (int i = 0; i < rows; i++)
                     {
                         for (int j = 0; j < cols; j++)
-                            parts[i][j] = pares[i][j] + b.pares[i][j];
+                            bits[i][j] = parts[i][j] + b.parts[i][j];
                     }
-                    return new tensor(parts);
+                    return new tensor(bits);
                 }
                 else { throw new Exception("Error: Tensors have different number of dimensions."); }
             }
@@ -133,13 +133,13 @@ namespace GCalc
             {
                 if (rows == b.rows && cols == b.cols)
                 {
-                    var parts = new List<List<double>>();
+                    var bits = new List<List<double>>();
                     for (int i = 0; i < rows; i++)
                     {
                         for (int j = 0; j < cols; j++)
-                            parts[i][j] = pares[i][j] + b.pares[i][j];
+                            bits[i][j] = parts[i][j] + b.parts[i][j];
                     }
-                    return new tensor(parts);
+                    return new tensor(bits);
                 }
                 else { throw new Exception("Error: Tensors have different number of dimensions."); }
             }
@@ -147,50 +147,50 @@ namespace GCalc
             public tensor inv()
             {
                 var cout = dcpy(this);
-                if(rows == 1 && cols == 1) { cout.pares[0][0] = 1 / pares[0][0]; return cout; }
+                if(rows == 1 && cols == 1) { cout.parts[0][0] = 1 / parts[0][0]; return cout; }
                 else { throw new Exception("can only invert scalars atm"); }
             }
         }
-        class term : aestimatus
+        class term : coefficient
         {
-            public List<aestimatus> num;
-            public List<aestimatus> den;
-            public List<aestimatus> tensors { get { return (List<aestimatus>)num.Concat(den); } }
+            public List<coefficient> num;
+            public List<coefficient> den;
+            public List<coefficient> tensors { get { return (List<coefficient>)num.Concat(den); } }
 
-            public term(List<aestimatus> numerator, List<aestimatus> denomenator) { num = numerator; den = denomenator; }
+            public term(List<coefficient> numerator, List<coefficient> denomenator) { num = numerator; den = denomenator; }
 
             /// <summary>
             /// value of the term given the parameters
             /// </summary>
             /// <param name="prms"></param>
             /// <returns></returns>
-            public tensor valor(params tensor[] vars)
+            public tensor Value(params tensor[] vars)
             {
-                return producti.arrprd<aestimatus, tensor>(num, (s, p) => 
+                return producti.arrprd<coefficient, tensor>(num, (s, p) => 
                 {
                     if (p is tensor && ((tensor)p).name != null) { p = vars.ToList().Find(t => t.name == ((tensor)p).name); }
-                    return s.valor().dot(p.valor());
+                    return s.Value().dot(p.Value());
                 })
-                .dot(producti.arrprd<aestimatus, tensor>(num, (s, p) =>
+                .dot(producti.arrprd<coefficient, tensor>(num, (s, p) =>
                 {
                     if (p is tensor && ((tensor)p).name != null) { p = vars.ToList().Find(t => t.name == ((tensor)p).name); }
-                    return s.valor().dot(p.valor());
+                    return s.Value().dot(p.Value());
                 }));
             }
             public List<tensor> getParams() { return tensors.Where(t => t is tensor && ((tensor)t).param).Cast<tensor>().ToList(); }
 
         }
-        class formula : aestimatus
+        class formula : coefficient
         {
             public List<term> terms;
 
-            public formula(List<term> parts) { terms = parts; }
+            public formula(List<term> bits) { terms = bits; }
             /*public static formula fromString(string line)
             {
                 for(int i = 0; i < )
             }*/
 
-            public tensor valor(params tensor[] vars) { return producti.arrprd<term, tensor>(terms, (s, p) => s.add(p.valor(vars))); }
+            public tensor Value(params tensor[] vars) { return producti.arrprd<term, tensor>(terms, (s, p) => s.add(p.Value(vars))); }
         }
 
         List<formula> formulae;
@@ -202,19 +202,7 @@ namespace GCalc
             formulae = new List<formula>();
             textBox1.Width = 0;
         }
-
-        public static T dcpy<T>(T cin)
-        {
-            using (var ms = new MemoryStream())
-            {
-                var formatter = new BinaryFormatter();
-                formatter.Serialize(ms, cin);
-                ms.Position = 0;
-
-                return (T)formatter.Deserialize(ms);
-            }
-        }
-
+        
         List<Keys> keys = new List<Keys>();
         private void kd(object sender, KeyEventArgs e)
         {
@@ -244,6 +232,7 @@ namespace GCalc
         string casus = "";
         private void ppaint(object sender, PaintEventArgs e)
         {
+            
             e.Graphics.DrawString(casus, new Font("Arial", 8), new SolidBrush(SystemColors.ControlText), 0, 0);
         }
 

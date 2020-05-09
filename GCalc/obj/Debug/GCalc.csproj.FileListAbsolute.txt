@@ -10,5 +10,4 @@ C:\Users\Hamish\source\repos\GCalc\GCalc\obj\Debug\GCalc.csproj.CoreCompileInput
 C:\Users\Hamish\source\repos\GCalc\GCalc\obj\Debug\GCalc.csproj.CopyComplete
 C:\Users\Hamish\source\repos\GCalc\GCalc\obj\Debug\GCalc.exe
 C:\Users\Hamish\source\repos\GCalc\GCalc\obj\Debug\GCalc.pdb
-C:\Users\Hamish\source\repos\GCalc\GCalc\obj\Debug\GCalc.parts.resources
 C:\Users\Hamish\source\repos\GCalc\GCalc\obj\Debug\GCalc.Window.resources

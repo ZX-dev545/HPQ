@@ -1,0 +1,17 @@
+C:\Users\Hamish\source\repos\NotGCalc\NotGCalc\bin\Debug\NotGCalc.exe.config
+C:\Users\Hamish\source\repos\NotGCalc\NotGCalc\bin\Debug\NotGCalc.exe
+C:\Users\Hamish\source\repos\NotGCalc\NotGCalc\bin\Debug\NotGCalc.pdb
+C:\Users\Hamish\source\repos\NotGCalc\NotGCalc\obj\Debug\NotGCalc.csprojAssemblyReference.cache
+C:\Users\Hamish\source\repos\NotGCalc\NotGCalc\obj\Debug\NotGCalc.Properties.Resources.resources
+C:\Users\Hamish\source\repos\NotGCalc\NotGCalc\obj\Debug\NotGCalc.Window.resources
+C:\Users\Hamish\source\repos\NotGCalc\NotGCalc\obj\Debug\NotGCalc.csproj.GenerateResource.cache
+C:\Users\Hamish\source\repos\NotGCalc\NotGCalc\obj\Debug\NotGCalc.csproj.CoreCompileInputs.cache
+C:\Users\Hamish\source\repos\NotGCalc\NotGCalc\obj\Debug\NotGCalc.exe
+C:\Users\Hamish\source\repos\NotGCalc\NotGCalc\obj\Debug\NotGCalc.pdb
+C:\Users\Hamish\source\repos\NotGCalc\NotGCalc\bin\Debug\Gma.System.MouseKeyHook.dll
+C:\Users\Hamish\source\repos\NotGCalc\NotGCalc\bin\Debug\Gma.System.MouseKeyHook.pdb
+C:\Users\Hamish\source\repos\NotGCalc\NotGCalc\obj\Debug\NotGCalc.csproj.CopyComplete
+C:\Users\Hamish\source\repos\NotGCalc\NotGCalc\bin\Debug\Liber.dll
+C:\Users\Hamish\source\repos\NotGCalc\NotGCalc\bin\Debug\Liber.pdb
+C:\Users\Hamish\source\repos\NotGCalc\NotGCalc\bin\Debug\Liber.xml
+C:\Users\Hamish\source\repos\NotGCalc\NotGCalc\obj\Debug\GCalc_UI.Window.resources

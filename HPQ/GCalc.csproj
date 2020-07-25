@@ -1,0 +1,628 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{8F0DF33F-2898-4E8B-BF56-15BFF54236F3}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>NotGCalc</RootNamespace>
+    <AssemblyName>NotGCalc</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Equation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tile.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI.Designer.cs">
+      <DependentUpon>UI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Window.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Window.Designer.cs">
+      <DependentUpon>Window.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="UI.resx">
+      <DependentUpon>UI.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Window.resx">
+      <DependentUpon>Window.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\Documents\SharpDevelop Projects\ReiynC\Liber\Liber.csproj">
+      <Project>{bffddcc2-8fce-4336-881c-48f899867773}</Project>
+      <Name>Liber</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\globalmousekeyhook\MouseKeyHook\MouseKeyHook.csproj">
+      <Project>{f52aa97e-180a-40ed-8f2b-09080171d6c7}</Project>
+      <Name>MouseKeyHook</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Keya.Image.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Keya.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Keyc.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\KeyCC.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\KeyChi.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Keyd.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\KeyDC.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Keye.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\KeyEC.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Keyf.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\KeyFC.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Keyg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\KeyGC.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Keyh.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\KeyHC.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Keyi.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\KeyIC.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Keyj.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\KeyJC.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Keyk.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\KeyKC.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Keyl.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\KeyLC.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Keym.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\KeyMC.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Keyn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\KeyNC.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Keyo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\KeyOC.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Keyp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\KeyPC.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Keyq.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\KeyQC.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Keyr.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\KeyRC.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Keys.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\KeySC.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Keyt.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\KeyTC.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Keyu.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\KeyUC.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Keyv.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\KeyVC.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Keyw.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\KeyWC.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Keyx.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\KeyXC.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Keyy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\KeyYC.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Keyz.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\KeyZC.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\KeyAC.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Keyb.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\KeyBC.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\6.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\7.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\8.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\9.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\..png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\0.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BigCross.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BigPlus.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Cross.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Divide.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Dot.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Minus.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Or.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Plus.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\And.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PiProduct.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Summation.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\LeftBracket.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\RightBracket.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ContourIntegral.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CoProduct.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Integral.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Nabla.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NotGreek\..png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NotGreek\0.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NotGreek\1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NotGreek\2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NotGreek\3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NotGreek\4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NotGreek\5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NotGreek\6.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NotGreek\7.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NotGreek\8.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NotGreek\9.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NotGreek\And.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NotGreek\BigCross.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NotGreek\BigPlus.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NotGreek\ContourIntegral.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NotGreek\CoProduct.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NotGreek\Cross.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NotGreek\Divide.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NotGreek\Dot.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NotGreek\Integral.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NotGreek\Keya.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NotGreek\KeyAC.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NotGreek\Keyb.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NotGreek\KeyBC.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NotGreek\Keyc.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NotGreek\KeyCC.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NotGreek\KeyChi.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NotGreek\Keyd.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NotGreek\KeyDC.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NotGreek\Keye.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NotGreek\KeyEC.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NotGreek\Keyf.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NotGreek\KeyFC.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NotGreek\Keyg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NotGreek\KeyGC.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NotGreek\Keyh.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NotGreek\KeyHC.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NotGreek\Keyi.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NotGreek\KeyIC.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NotGreek\Keyj.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NotGreek\KeyJC.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NotGreek\Keyk.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NotGreek\KeyKC.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NotGreek\Keyl.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NotGreek\KeyLambda.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NotGreek\KeyLC.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NotGreek\Keym.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NotGreek\KeyMC.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NotGreek\Keyn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NotGreek\KeyNC.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NotGreek\Keyo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NotGreek\KeyOC.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NotGreek\Keyp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NotGreek\KeyPC.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NotGreek\Keyq.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NotGreek\KeyQC.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NotGreek\Keyr.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NotGreek\KeyRC.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NotGreek\Keys.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NotGreek\KeySC.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NotGreek\Keyt.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NotGreek\KeyTau.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NotGreek\KeyTC.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NotGreek\Keyu.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NotGreek\KeyUC.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NotGreek\Keyv.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NotGreek\KeyVC.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NotGreek\Keyw.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NotGreek\KeyWC.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NotGreek\Keyx.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NotGreek\KeyXC.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NotGreek\Keyy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NotGreek\KeyYC.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NotGreek\Keyz.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NotGreek\KeyZC.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NotGreek\LeftBracket.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NotGreek\Minus.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NotGreek\Nabla.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NotGreek\Or.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NotGreek\PiProduct.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NotGreek\Plus.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NotGreek\RightBracket.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NotGreek\Summation.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Equals.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\EqualSign.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Comma.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\GreaterThan.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\GreaterThanOrEqualTo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\LessThan.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\LessThanOrEqualTo.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{8F0DF33F-2898-4E8B-BF56-15BFF54236F3}</ProjectGuid>
+    <ProjectGuid>{DA900614-5EA0-405B-BC74-6A2CEC280018}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>NotGCalc</RootNamespace>
     <AssemblyName>NotGCalc</AssemblyName>
@@ -48,6 +48,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Equation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Graphing-2.cs" />
+    <Compile Include="Graphing.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Tile.cs">
@@ -623,6 +627,24 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\LessThanOrEqualTo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NotGreek\Comma.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NotGreek\EqualSign.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NotGreek\GreaterThan.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NotGreek\GreaterThanOrEqualTo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NotGreek\LessThan.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NotGreek\LessThanOrEqualTo.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

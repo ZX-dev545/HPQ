@@ -5,8 +5,10 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using System.Drawing.Drawing2D;
+using System.Drawing.Imaging;
+using System.Diagnostics;
 
-namespace NotGCalc
+namespace GCalc
 {
     partial class Window
     {
@@ -15,6 +17,7 @@ namespace NotGCalc
             //public formula def;
             //public tensor sub;
             public Panel Canvas;
+            public Button PlotBtn;
             public TextBox TextInput;
             public new static Size Size { get { return new Size(183, 50 + 18); } }//+ 12 is the extra output height
             int CanvasHeight = 50;//without the extra output height
@@ -24,13 +27,14 @@ namespace NotGCalc
             public Point pointer = new Point(0, 0);
             Piece cursor;
             public Group Root;//public List<Group> Roots;
-            
+
+            public bool Plotting;
             //public Equation equation = new Equation() { parts = new List<IValuable>() };
             //IContainer CurrentIContainer = null;
             protected static List<relation> EquationType(IEnumerable<Group> groups)
             {
                 var rels = new List<string> { " ", "=", ">", "<", ">=", "<=" };
-                var cout = (from g in groups.Skip(1) select (relation)rels.IndexOf(g.pieces[0].val)).ToList();
+                var cout = (from g in groups.Skip(1) select (relation)rels.IndexOf(g[0].val)).ToList();
                 //Catch out bad equation syntax
                 if (cout.Count() > 0 && !cout.All(s => cout.Contains(relation.Equal) ? s == relation.Equal : true))
                     throw new SyntaxError("SynatxError: Can't mix those comparison symbols together");
@@ -39,10 +43,10 @@ namespace NotGCalc
                     return new List<relation> { relation.None };
 
                 var FunctionIdentity = groups.Count() == 2 && //There is 1 equals sign
-                groups.ElementAt(1).pieces[0].val == "=" && //There is 1 effective Piece on the left
-                groups.ElementAt(0).pieces[0] is FunctionPiece; //that effective Piece is a FunctionPiece
+                groups.ElementAt(1)[0].val == "=" && //There is 1 effective Piece on the left
+                groups.ElementAt(0)[0] is FunctionPiece; //that effective Piece is a FunctionPiece
 
-                var function = groups.ElementAt(0).pieces[0] as FunctionPiece;
+                var function = groups.ElementAt(0)[0] as FunctionPiece;
                 if (function != null)
                     FunctionIdentity &= producti.arrprd(function.built_in ?
                     (function.operand.variables[0] as BracketPiece).inside.pieces : //if the function is built-in, then the super and sub are also parameters/operands.
@@ -72,6 +76,7 @@ namespace NotGCalc
                 public Group sub;
 
                 public string val = "";
+                public bool special = false;
                
                 /// <summary>
                 /// The way that this Piece of user input will be interpreted by the
@@ -133,6 +138,7 @@ namespace NotGCalc
                     var num = condition ? group.parent.val : "Nabla";//delocalise parameter variables left over from DisplayFormula;
                     if (num.Contains(':'))//Nabla is my "something's wrong" symbol
                         num = "Key" + new string(num.Skip(num.IndexOf(':') + 1).ToArray());
+
                     return condition && num != "/" ? l * 2 / 3 : l;
                 }
                 
@@ -176,6 +182,13 @@ namespace NotGCalc
                 {
                     return s(8);
                 }
+
+                public override IFormulaic Interpret()
+                {
+                    return group.parent is FunctionPiece && (group.parent as FunctionPiece).val.Contains("integral") ? 
+                        new Tensor(new Scalar(0), false) : base.Interpret();
+                }
+
             }
             [Serializable]
             public class OperatorPiece : Piece
@@ -289,11 +302,20 @@ namespace NotGCalc
                     super = new Group(this) { pieces = above == null ? new List<Piece>() : above };
                     sub = new Group(this) { pieces = below == null ? new List<Piece>() : below };
                     this.group = group;
+                    special = val == "Keyd" ? 
+                        group.parent is FunctionPiece && group.pieces.Where(p => p.val == "Keyd" && p.special).Count() == 0 : 
+                        Globals.specials.Contains(val);
                 }
 
                 public override IFormulaic Interpret()
                 {
                     var scalar = number ? new Scalar(double.Parse(val)) : new Scalar();
+
+                    if (val == "Keye")
+                        scalar.output = Math.E;
+                    if (val == "KeyPi")
+                        scalar.output = Math.PI;
+
                     return new Tensor(scalar, rcp, super.pieces.Count > 0 ? super.Interpret(new Equation()) : null, number ? null : val, /*group.parent?.Interpret() is IContainer ? (IContainer)group.parent?.Interpret() :*/ null);
                 }
                 public override void draw(int x, int y, Graphics g, Piece v)
@@ -325,7 +347,11 @@ namespace NotGCalc
                         if (num.Contains(':'))
                             num = "Key" + new string(num.Skip(num.IndexOf(':') + 1).ToArray());
                         effective_floor = Globals.symbols[num].f;
-                        image = Globals.symbols[num].i;
+
+                        var blue_condition = (special && Globals.specials.Contains(val)) || //tint the ScalarPiece blue if it's special
+                            (group.parent is FunctionPiece && (group.parent as FunctionPiece).written && (group.parent as FunctionPiece).name.pieces.Contains(this));
+                        image = Recolour(Globals.symbols[num].i, Color.Black, blue_condition ? Globals.SpecialColour : Color.Black);
+
                         g.DrawImage(Scale(image, s(image.Width), s(image.Height)), x, y - floor/* + Math.Max(super.height - s(Globals.symbols[val].f - stdh), 0)*/ + stdh / 2 /*s(Globals.symbols[val].offset)*/);
                     }
 
@@ -484,7 +510,7 @@ namespace NotGCalc
                     
                     //array = dcpy(bigger_piece.array);
                     //this_group.pieces.Add(this);
-                    //cursor = cursor == null ? null : /*bigger_piece.*/array[cursor_index[0], cursor_index[1]].pieces[cursor_index[2]];
+                    //cursor = cursor == null ? null : /*bigger_piece.*/array[cursor_index[0], cursor_index[1]][cursor_index[2]];
 
                     //return bigger_piece;
                     size.Width += widen;
@@ -521,13 +547,13 @@ namespace NotGCalc
                     switch (side)
                     {
                         case side.left:
-                            return producti.arrprd(columns[0], (o, i) => o &= i.pieces[0] is NullPiece, true);
+                            return producti.arrprd(columns[0], (o, i) => o &= i[0] is NullPiece, true);
                         case side.right:
-                            return producti.arrprd(columns[size.Width - 1], (o, i) => o &= i.pieces[0] is NullPiece, true);
+                            return producti.arrprd(columns[size.Width - 1], (o, i) => o &= i[0] is NullPiece, true);
                         case side.top:
-                            return producti.arrprd(array[0], (o, i) => o &= i.pieces[0] is NullPiece, true);
+                            return producti.arrprd(array[0], (o, i) => o &= i[0] is NullPiece, true);
                         case side.bottom:
-                            return producti.arrprd(array[size.Height - 1], (o, i) => o &= i.pieces[0] is NullPiece, true);
+                            return producti.arrprd(array[size.Height - 1], (o, i) => o &= i[0] is NullPiece, true);
                         default:
                             throw new Exception("wtf");
                     }
@@ -550,7 +576,21 @@ namespace NotGCalc
                     if (empty_sides > 4)
                         ShedEmptySides();
                 }
-                
+
+                public override IFormulaic Interpret()
+                {
+                    var t1 = array.ConvertAll(r => r.ConvertAll(c => (c.pieces.Count == 1 ? c[0] is ScalarPiece ? (c[0] as ScalarPiece).number ?
+                            (c[0].Interpret() as Tensor).parts[0][0] : c.Interpret(new Equation()) : c[0].Interpret() : c.Interpret(new Equation())) as IValuable))
+                        ;
+                    return new Tensor
+                        (
+                        array.ConvertAll(r => r.ConvertAll(c => (c.pieces.Count == 1 ? c[0] is ScalarPiece ? (c[0] as ScalarPiece).number ?
+                            (c[0].Interpret() as Tensor).parts[0][0] : c.Interpret(new Equation()) : c[0].Interpret() : c.Interpret(new Equation())) as IValuable)),
+                        false,//group.parent is OperatorPiece ? false : group.parent.sub == group,
+                        super.Interpret(new Equation())
+                        );
+                }
+
                 public int mem_y { get; set; }
                 public override void draw(int x, int y, Graphics g, Piece v)
                 {
@@ -596,6 +636,7 @@ namespace NotGCalc
                 { get { return new Group(this) { pieces = name.pieces.Concat(operand.pieces).ToList() }; } }
 
                 public bool built_in { get { return Globals.symbols.ContainsKey(val); } }
+                public bool written => Globals.functions.ContainsKey(val);
                 public enum super_sub_type { big, non, sml }
                 public super_sub_type sst
                 {
@@ -640,7 +681,7 @@ namespace NotGCalc
                     sub = new Group(this);
                     operand = new Group(this);
                     this.name = new Group(this);
-                    
+
                     if (sst == super_sub_type.big)
                     {
                         super.pieces.Add(new NullPiece(super));
@@ -649,7 +690,7 @@ namespace NotGCalc
 
                     if (!built_in)
                     {
-                        foreach (var l in val)
+                        foreach (var l in val.Substring(written ? val.IndexOf(')') + 1 : 0))
                             this.name.pieces.Add(new ScalarPiece("Key" + l, this.name));
                         operand.pieces.Add(new BracketPiece(operand));
                     }
@@ -673,15 +714,48 @@ namespace NotGCalc
                 }
                 public override IFormulaic Interpret()
                 {
-                    if (built_in)
-                        return new Operation(null, val, operand.Partition.Count() <= 1 ? new List<Formula> { operand.Interpret(new Equation()) } : throw new SyntaxError("SyntaxError: built-in functions only take 1 argument."),
-                            Globals.functions.ContainsKey(val) ? Globals.functions[val] : throw new DevError("DevError: Couldn't find the function '" + val + "' in Globals.functions"),
-                            val.Contains('#') ? new Tuple<Formula, List<Equation>>(super.Interpret(new Equation()), sub.Interpret().ToList()) : null); //Only iterator functions supported atm
+                    if (built_in || written)
+                    {
+                        var args = new List<Formula>
+                        {
+                            (operand.pieces.Count == 1 && operand[0] is BracketPiece ?
+                            (operand[0] as BracketPiece).inside : operand).Interpret(new Equation())
+                        };
+                        object parameters = null;
+
+                        if (val.Contains("integral"))
+                        {
+                            parameters = new IFormulaic[3] { super.Interpret(new Equation()), sub.Interpret(new Equation()), null };
+
+                            foreach (var i in operand.pieces.Where(o => o.val == "Keyd" && o.special && operand.pieces.IndexOf(o) + 2 == operand.pieces.Count))
+                            {
+                                var parameter = new Formula(null);
+                                parameter.Add(operand[operand.pieces.IndexOf(i) + 1].Interpret());
+                                //args.Add(parameter);
+                                (parameters as IFormulaic[])[2] = operand[operand.pieces.IndexOf(i) + 1].Interpret();
+                                args[0] = new Group(this, operand.pieces.GetRange(0, operand.pieces.Count - 2)).Interpret(new Equation());
+                            }
+                            if (!operand.pieces.Exists(o => o.val == "Keyd" && o.special && operand.pieces.IndexOf(o) + 2 == operand.pieces.Count))
+                                throw new SyntaxError("SyntaxError: Invalid/No variable of integration");
+                        }
+                        if (val.Contains('#'))
+                            parameters = new Tuple<Formula, List<Equation>>(super.Interpret(new Equation()), sub.Interpret().ToList());
+                        if (val.Contains("log"))
+                            args.Add(sub.Interpret(new Equation()));
+
+                        var t1 = new Operation(null, val, operand.Partition.Count() <= 1 ? args : 
+                            throw new SyntaxError("SyntaxError: built-in functions only take 1 argument."),
+                            Globals.functions.ContainsKey(val) ? Globals.functions[val] : 
+                            throw new DevError("DevError: Couldn't find the function '" + val + "' in Globals.functions"),
+                             parameters);
+                        return t1;
+                    }
                     else
                     {
-                        var t1 = (/*effective_*/operand.pieces[0] as BracketPiece).inside.Interpret();
-                        return new Function(null, val, new List<Formula>() { (/*effective_*/operand.pieces[0] as BracketPiece).inside.Interpret().First().parts[0] as Formula },
-                            null, super.Interpret(new Equation()));
+                        var t1 = (/*effective_*/operand[0] as BracketPiece).inside.Interpret();
+                        var index = super.Interpret(new Equation());
+                        return new Function(null, val, (/*effective_*/operand[0] as BracketPiece).inside.Interpret().ToList().ConvertAll(e => e[0] as Formula),
+                            null, true, (index[0] as Term).numerator.Count == 0 ? null : index);//stop the index from defaulting to zero
                     }
                 }
 
@@ -708,20 +782,22 @@ namespace NotGCalc
                         super.draw(x + GetSmallWidth(), y - SmallHeight / 2 - s((int)sort.qsort(AllParts.pieces, a => a.floor)[0].Item2 - stdh), g, v);
 
                         AllParts.draw(x, y, g, v);
-                        //name.draw(x, y + super.height + (Math.Max(s(Globals.symbols[operand.pieces[0].val].f), operand.height) > name.height ? 
-                        //    (Math.Max(s(Globals.symbols[operand.pieces[0].val].f), operand.height) - name.height) / 2 : 0), g, v);
+
+                        //name.draw(x, y + super.height + (Math.Max(s(Globals.symbols[operand[0].val].f), operand.height) > name.height ? 
+                        //    (Math.Max(s(Globals.symbols[operand[0].val].f), operand.height) - name.height) / 2 : 0), g, v);
 
                         ////var font_height_ratio = GetSmallHeight() / g.MeasureString("(", new Font(Globals.MathsFont.FontFamily, GetSmallHeight())).Height;
                         ////var corrected_font = new Font(Globals.MathsFont.FontFamily, GetSmallHeight() * font_height_ratio);
 
                         ////g.DrawString("(", corrected_font, Globals.MathsBrush, x + name.width, y);
                         ////var t1 = g.MeasureString("(", new Font(Globals.MathsFont.FontFamily, GetSmallHeight())).Height;
-                        //operand.draw(x + name.width/* + (int)g.MeasureString("(", corrected_font).Width*/, y + super.height + (Math.Max(s(Globals.symbols[operand.pieces[0].val].f), operand.height) < name.height ?
-                        //    (name.height - Math.Max(s(Globals.symbols[operand.pieces[0].val].f), operand.height)) / 2 : 0)/* + (name.height - operand.height) / 2*/, g, v);
+                        //operand.draw(x + name.width/* + (int)g.MeasureString("(", corrected_font).Width*/, y + super.height + (Math.Max(s(Globals.symbols[operand[0].val].f), operand.height) < name.height ?
+                        //    (name.height - Math.Max(s(Globals.symbols[operand[0].val].f), operand.height)) / 2 : 0)/* + (name.height - operand.height) / 2*/, g, v);
                         ////g.DrawString(")", corrected_font, Globals.MathsBrush, x + name.width + (int)g.MeasureString("(", corrected_font).Width, y);
 
-                        try { sub.draw(x + GetSmallWidth(), y + Math.Max(name.height, Math.Max(s(Globals.symbols[(operand.pieces[0] as BracketPiece).inside.pieces[0].val].f), operand.height)), g, v); }
-                        catch (Exception) { throw new SyntaxError("Where's the operand for '" + val + "' ?"); }
+                        try { sub.draw(x + GetSmallWidth(), y + Math.Max(name.height, Math.Max(s(Globals.symbols[(operand[0] as BracketPiece).inside[0].val].f), operand.height)), g, v); }
+                        catch (Exception)
+                        { throw new SyntaxError("Where's the operand for '" + val + "' ?"); }
                     }
                     base.draw(x, y, g, v);
                 }
@@ -761,7 +837,7 @@ namespace NotGCalc
                 public override IFormulaic Interpret()
                 {
                     var cout = inside.Interpret(new Equation());
-                    cout.Index = super.Interpret(new Equation());
+                    cout.Index = super.pieces.Any() ? super.Interpret(new Equation()) : null;//make sure the index is null rather than 0 if there's no power to be raised to
                     return cout;
                 }
 
@@ -810,6 +886,12 @@ namespace NotGCalc
                     }
                 }
 
+                public Piece this[int index]
+                {
+                    get => pieces[index];
+                    set => pieces[index] = value;
+                }
+
                 /// <summary>
                 /// The distance in pixels (negative) needed to bring a Piece up to ground level from the lowest point in this Group, 
                 /// relative to this Group.
@@ -840,11 +922,11 @@ namespace NotGCalc
                     if (a is FunctionPiece)
                     {
                         var f = a as FunctionPiece;
-                        var o = f.group.pieces[f.group.pieces.IndexOf(f) - 1];
+                        var o = f.group[f.group.pieces.IndexOf(f) - 1];
                         if (f.sst == FunctionPiece.super_sub_type.big)
                             if (f.val.Substring(0, 3) == "[1]")
                             {
-                                var func_under = (f == f.group.pieces[0] ? f.s(4) : o is ScalarPiece ? o.stdh : o.height);
+                                var func_under = (f == f.group[0] ? f.s(4) : o is ScalarPiece ? o.stdh : o.height);
                                 return (f.height - func_under) / 2;
                             }
                             else return Math.Min(f.sub.height, 6); //6 = s(8), the stdh for any Piece in f.sub
@@ -877,7 +959,7 @@ namespace NotGCalc
                     {
                         for (int i = 0; i < pieces.Count; i++)
                         {
-                            acc += i == 0 ? 0 : pieces[i - 1].width + pieces[i].s(2);
+                            acc += i == 0 ? 0 : pieces[i - 1].width;// + pieces[i].s(2);
                             pieces[i].draw(acc, y, g, v);
                         }
                         //g.DrawLine(new Pen(Color.Chocolate), x, y, x + width, y);
@@ -890,10 +972,10 @@ namespace NotGCalc
                     {
                         instruction.Invoke(p, args);
 
-                        try { p.super.DeepForEach(args, instruction); } catch (Exception) { }
-                        try { p.sub.DeepForEach(args, instruction); } catch (Exception) { }
-                        try { (p as BracketPiece).inside.DeepForEach(args, instruction); } catch (Exception) { }
-                        try { (p as FunctionPiece).operand.DeepForEach(args, instruction); } catch (Exception) { }
+                        try { p.super.DeepForEach(args, instruction); } catch (Exception) { Debug.WriteLine("อย่าสนใจ^^"); }
+                        try { p.sub.DeepForEach(args, instruction); } catch (Exception) { Debug.WriteLine("อย่าสนใจ^^"); }
+                        try { (p as BracketPiece).inside.DeepForEach(args, instruction); } catch (Exception) { Debug.WriteLine("อย่าสนใจ^^"); }
+                        try { (p as FunctionPiece).operand.DeepForEach(args, instruction); } catch (Exception) { Debug.WriteLine("อย่าสนใจ^^"); }
                     }
                 }
 
@@ -912,13 +994,16 @@ namespace NotGCalc
                 }
                 
                 public Group CheckLocalise(IEnumerable<Group> groups) => 
-                    EquationType(groups)[0] == relation.Maps ? localise(groups.ElementAt(0).pieces[0] as FunctionPiece) : this;
+                    EquationType(groups)[0] == relation.Maps ? localise(groups.ElementAt(0)[0] as FunctionPiece) : this;
                 public Group localise(FunctionPiece f)
                 {
                     var cout = dcpy(this); //localise all of the parameter variables of the function so that we don't get confusion between function parameter variables
 
                     cout.DeepForEach(null, (p, _null_) =>
-                    { try { if (!(Globals.values.ContainsKey(p.val) || (p as ScalarPiece).number)) p.val = f.val + ":" + p.val.Substring(3); } catch (Exception) { } });
+                    {
+                        try { if (!(Globals.values.ContainsKey(p.val) || (p as ScalarPiece).number)) p.val = f.val + ":" + p.val.Substring(3); }
+                        catch (Exception) { Debug.WriteLine("อย่าสนใจ^^"); }
+                    });
 
                     return cout;
                 }
@@ -934,13 +1019,12 @@ namespace NotGCalc
                         //conditions to be met before it is decided that the partition has reached its end
                         Func<Piece, bool> fo = p => p.val.Contains("=") || p.val == "<" || p.val == ">" || p.val == ",";
                         Func<int[], bool> eq = f => PIECES[f[0]].val == ",";
-                        
-                        //List<int>'s containing all the indicies representing all the partitioning points (rather than the actual partitions themselves)
-                        var formae = (from p in PIECES where fo(p) select new[] { PIECES.IndexOf(p), next(p, PIECES, fo) }).ToList();
-                        var equati = (from f in formae where eq(f) select new[] { formae.IndexOf(f), next(f, formae, eq) }).ToList();
 
+                        //List<int>'s containing all the indicies representing all the partitioning points (rather than the actual partitions themselves)
                         //Add partitioning points at the start so there are an equal number of partitions & partitioning point indices
+                        var formae = (from p in PIECES where fo(p) select new[] { PIECES.IndexOf(p), next(p, PIECES, fo) }).ToList();
                         formae.Insert(0, new[] { 0, next(PIECES[0], PIECES, fo) });
+                        var equati = (from f in formae where eq(f) select new[] { formae.IndexOf(f), next(f, formae, eq) }).ToList();
                         equati.Insert(0, new[] { 0, next(formae[0], formae, eq) });
                         
                         //return IEnumerable partitions of partitions according to the aforementioned List<int>'s,
@@ -964,7 +1048,7 @@ namespace NotGCalc
 
                     var coefficients = 0;
                     var terms = 1;
-                    
+                   
                     for (int i = 0; i < pieces.Count; i++)
                     {
                         if (pieces[i] is OperatorPiece)
@@ -996,7 +1080,12 @@ namespace NotGCalc
                                             throw new Exception(e.Message + " in the numerator of the fraction at:" + (coefficients + 1) + " in Term:" + terms);
                                     }
 
-                                    try { (interpretation.parts.Last() as Term).denominator.Add(pieces[i].sub.Interpret(equation)); }
+                                    try
+                                    {
+                                        var denominaturum = pieces[i].sub.Interpret(equation);
+                                        denominaturum.Reciprocal = true;
+                                        (interpretation.parts.Last() as Term).denominator.Add(denominaturum);
+                                    }
                                     catch (Exception e)
                                     {
                                         if (e.Message.Substring(0, 24) == "SyntaxError: Empty field")
@@ -1025,11 +1114,12 @@ namespace NotGCalc
                         {
                             IFormulaic formulaic;
                             coefficients++;
-
+                            
                             try
                             {
                                 formulaic = pieces[i].Interpret();//SCRAPPED: make sure negative indices get put in the denominator within Piece.Interpret()
-                                try { formulaic.Reciprocal ^= parent.val == "/" && parent.sub == this; } catch (Exception) { } //communicate across the whether or not the Piece is in the denominator of its Term
+                                //try { formulaic.Reciprocal ^= parent.val == "/" && parent.sub == this; }
+                                //catch (Exception) { Debug.WriteLine("อย่าสนใจ^^"); } //communicate across the whether or not the Piece is in the denominator of its Term
                                 interpretation.Add(formulaic);
                             }
                             catch (Exception e)
@@ -1042,7 +1132,7 @@ namespace NotGCalc
 
                     #region green
                     ////explication phase
-                    //Pieces.DeepForEach(Pieces.pieces[0], (next, prev) => 
+                    //Pieces.DeepForEach(Pieces[0], (next, prev) => 
                     //{
                     //    if (!(prev is OperatorPiece))
                     //    {
@@ -1135,11 +1225,104 @@ namespace NotGCalc
                 TextInput.Click += OnClick;
                 v.Controls.Add(TextInput);
 
+                PlotBtn = new Button();
+                PlotBtn.Size = new Size(25, Size.Height);
+                PlotBtn.Location = new Point(Size.Width - PlotBtn.Width, 0);
+                PlotBtn.Name = "PlotBtn";
+                PlotBtn.Text = "PLOT";
+                PlotBtn.TabIndex = 3;
+                PlotBtn.BackColor = SystemColors.ControlDarkDark;
+                PlotBtn.FlatStyle = FlatStyle.Flat;
+                PlotBtn.Margin = new Padding(0);
+                PlotBtn.Visible = true;
+                PlotBtn.UseVisualStyleBackColor = false;
+                PlotBtn.MouseLeave += (sender, e) => BackColor = SystemColors.ControlDark;
+                PlotBtn.MouseHover += (sender, e) => BackColor = SystemColors.ControlDarkDark;
+                PlotBtn.Click += OnPlotBtnClick;
+                Canvas.Controls.Add(PlotBtn);
+
                 Root = new Group(null, 'n');
                 //Roots = new List<Group> { new Group(null) };
                 //CurrentGroup = Roots[0];
                 cursor = new ScalarPiece("init", Root);
                 //CurrentIContainer = equation;
+            }
+
+            string err = "";
+            Group answer = new Group(null);
+
+            void OnPlotBtnClick(object sender, EventArgs e)
+            {
+                List<Equation> interp = new List<Equation>();
+                IVariable variable = new Tensor();
+
+                Plotting = !Plotting;
+                PlotBtn.BackColor = Plotting ? Color.Green : Color.Red;
+
+                if (!Plotting)
+                {
+                    (Parent.Parent as Window).GraphContents[Parent.Controls.OfType<Tile>().ToList().IndexOf(this) + 1] = new Dictionary<string, figura>();
+                    (Parent.Parent as Window).GuideLines[Parent.Controls.OfType<Tile>().ToList().IndexOf(this)] = new List<List<pontus>>[4];
+                    for (int i = 0; i < 4; i++)//note to self, T[].Initialize calls default(T), which is absolutely useless if T a is reference type
+                        (Parent.Parent as Window).GuideLines[Parent.Controls.OfType<Tile>().ToList().IndexOf(this)][i] = new List<List<pontus>>();
+
+                    (Parent.Parent as Window).GraphPanel.Invalidate();
+                    return;
+                }
+
+                var plot_success = false;
+                try
+                {
+                    //find the value of 'variable'
+                    interp = Interpret();
+                    if (!interp.Exists(i => i.parts.Count < 2) && !(interp.Count == 1 && (interp[0][0] as Formula)[0, 0, true] is Function && (interp[0][0] as Formula)[0, 0, true].CRelation.R == relation.Maps))
+                    {
+                        (Parent.Parent as Window).GraphPanel_Plot(interp, this);
+                        plot_success = true;
+                    }
+                
+                    foreach (var eq in interp)
+                    {
+                        eq.Evaluate();
+                        
+                        if (eq.EqRelations[0] != relation.None)
+                            variable = eq.SolveFor(((eq.parts[0] as IContainer).parts[0] as Term).numerator[0] as IVariable, Globals.values);
+                        else
+                            throw new SyntaxError("SyntaxError: No equation to solve.");
+
+                        //turn that value into a displayable Group
+                        var rels = new[] { " ", "=", ">", "<", ">=", "<=", "=" };//last element is the Piece.val for relation.Maps, and is the reason you see '=' displayed for function identities
+                        Piece value = new NullPiece(answer);
+                        var surrogate = new Formula(null);
+
+                        surrogate.Add(variable.Value(Globals.values));
+
+                        answer.pieces = new List<Piece>
+                        {
+                            new ScalarPiece("Key" + variable.name.Last() + "", answer),
+                            new OperatorPiece(rels[(int)eq.EqRelations[0]], answer),
+                        };
+                        if (variable is Function || (variable is Tensor && (variable as Tensor).DimDim == 0))
+                            answer.pieces.Add(DisplayFormula(surrogate, answer));//value);
+                        answer.pieces.Add(new NullPiece(answer));
+                    }
+                    //signify the success of the operation by providing no error to write
+                    err = "";
+                        
+                    //update
+                    Canvas.Invalidate();
+                    (Parent.Parent as Window).GraphPanel.Invalidate();
+                }
+                catch (Error error)
+                {
+                    if (!plot_success) //sometimes you have to ignore the error because the Evaluate function being called here doesn't know the value of the parameters
+                    {
+                        err = error.Message;
+                        Plotting = false;
+                        PlotBtn.BackColor = Color.Red;
+                    }
+                    Canvas.Invalidate();
+                }
             }
 
             private void OnPaint(object sender, PaintEventArgs e)
@@ -1155,55 +1338,13 @@ namespace NotGCalc
                 //    try { acc += Roots[i - 1].width; } catch (Exception) { }
                 //    Roots[i].draw(acc, Canvas.Height / 2, e.Graphics, cursor);
                 //}
-                string err = ""; bool _err;
                 try { Root.draw(0, CanvasHeight / 2, e.Graphics, cursor); }
-                catch (Error error) { err = error.Message; _err = true; }
+                catch (Error error) { err = error.Message; }
                 //e.Graphics.DrawLine(new Pen(Color.Crimson), 0, Canvas.Height / 2, Canvas.Width, Canvas.Height / 2);
                 
-                e.Graphics.DrawLine(new Pen(SystemColors.GrayText), 4, CanvasHeight, Canvas.Width - 8, CanvasHeight);//pretty border line
-
-                Equation interp = new Equation(); IVariable variable = new Tensor();
-                try
-                {
-                    interp = Interpret();
-                    if (interp.EqRelations[0] != relation.None)
-                        variable = interp.SolveFor(((interp.parts[0] as IContainer).parts[0] as Term).numerator[1] as IVariable, Globals.values);
-                    else
-                        throw new SyntaxError("SyntaxError: No equation to solve.");
-                    _err = false;
-                }
-                catch (Error error) { if(err == "") err = error.Message; _err = true; }
-                if (_err)
-                    e.Graphics.DrawString(err, new Font(Globals.MathsFont.FontFamily, 8), Globals.MathsBrush, 0, CanvasHeight + 2);
-                else
-                {
-                    var answer = new Group(null);
-                    var rels = new[] { " ", "=", ">", "<", ">=", "<=", "=" };//last element is the Piece.val for relation.Maps, and is the reason you see '=' displayed for function identities
-                    Piece value = new NullPiece(answer);
-                    if (variable is Function)
-                        value = DisplayFormula((variable as Function).Process, answer);
-                    else switch((variable as Tensor).DimDim)
-                    {
-                        case 0 when interp.EqRelations[0] != relation.Maps:
-                            value = new ScalarPiece(((variable as Tensor).parts[0][0] as Scalar).output.Value + "", answer);
-                            break;
-                        case 0 when interp.EqRelations[0] == relation.Maps:
-                            break;
-                        case 1:
-                        case 2:
-                            value = new TensorPiece(answer, new Size((variable as Tensor).cols, (variable as Tensor).parts.Count));
-                            break;
-                        default:
-                            break;
-                    }
-                    answer.pieces = new List<Piece>
-                    {
-                        new ScalarPiece("Key" + variable.name.Last() + "", answer),
-                        new OperatorPiece(rels[(int)interp.EqRelations[0]], answer), 
-                        value
-                    };
-                    answer.draw(0, Canvas.Height + 4 - answer.height, e.Graphics, cursor);
-                }
+                e.Graphics.DrawLine(new Pen(SystemColors.GrayText), 4, CanvasHeight, Canvas.Width - PlotBtn.Width - 8, CanvasHeight);//pretty border line
+                e.Graphics.DrawString(err, new Font(Globals.MathsFont.FontFamily, 8), Globals.MathsBrush, 0, CanvasHeight + 2);
+                answer.draw(0, Canvas.Height + 4 - answer.height, e.Graphics, cursor);
             }
 
             /// <summary>
@@ -1217,13 +1358,13 @@ namespace NotGCalc
                 Piece cout;
 
                 if (p.group.parent == null)
-                    cout = p.super.pieces.Any() ? p.sub.pieces[0] : p;
+                    cout = p.super.pieces.Any() ? p.sub[0] : p;
                 else if (p.group.Equals(p.group.parent.super))
                     cout = move_up(p.group.parent);
                 else if (p.group.Equals(p.group.parent.sub))
                     cout = p.group.parent;
                 else
-                    cout = p.group.parent.super.pieces.Any() ? p.group.parent.sub.pieces[0] : p;
+                    cout = p.group.parent.super.pieces.Any() ? p.group.parent.sub[0] : p;
 
                 return cout;
             }
@@ -1238,13 +1379,13 @@ namespace NotGCalc
                 Piece cout;
                 
                 if (p.group.parent == null)
-                    cout = p.sub.pieces.Any() ? p.sub.pieces[0] : p;
+                    cout = p.sub.pieces.Any() ? p.sub[0] : p;
                 else if (p.group.Equals(p.group.parent.sub))
                     cout = move_down(p.group.parent);
                 else if (p.group.Equals(p.group.parent.super))
                     cout = p.group.parent;
                 else
-                    cout = p.group.parent.sub.pieces.Any() ? p.group.parent.sub.pieces[0] : p;
+                    cout = p.group.parent.sub.pieces.Any() ? p.group.parent.sub[0] : p;
 
                 return cout;
             }
@@ -1261,7 +1402,7 @@ namespace NotGCalc
                 {
                     cout = p.group.pieces.Last().Equals(p) ?
                     p.group.parent == null ? p : move_right(p.group.parent) :
-                    p.group.pieces[p.group.pieces.FindIndex(q => q.Equals(p)) + 1];
+                    p.group[p.group.pieces.FindIndex(q => q.Equals(p)) + 1];
                 }
                 catch (Exception e) { cout = e is IndexOutOfRangeException ? p : p.group.parent; }
                 return cout;
@@ -1282,9 +1423,9 @@ namespace NotGCalc
                             other = index;
                             break;
                         }
-                        if (group.pieces[i].val == "(")
+                        if (group[i].val == "(")
                             level++;
-                        if (group.pieces[i].val == ")")
+                        if (group[i].val == ")")
                         {
                             level--;
                             if (level == 0)
@@ -1307,9 +1448,9 @@ namespace NotGCalc
                             other = index;
                             break;
                         }
-                        if (group.pieces[i].val == ")")
+                        if (group[i].val == ")")
                             level++;
-                        if (group.pieces[i].val == "(")
+                        if (group[i].val == "(")
                         {
                             level--;
                             if (level == 0)
@@ -1357,9 +1498,9 @@ namespace NotGCalc
                                 tensor_coords.Y = 0;
                                 tensor.Magnate(TensorPiece.side.top);
                             }
-                            cursor = tensor.array[tensor_coords.Y][tensor_coords.X].pieces[0];
+                            cursor = tensor.array[tensor_coords.Y][tensor_coords.X][0];
                         }
-                        else cursor = cursor.super.pieces.Any() ? cursor.super.pieces[0] : move_up(cursor);
+                        else cursor = cursor.super.pieces.Any() ? cursor.super[0] : move_up(cursor);
                         //CurrentIContainer = cursor.Interpret().Container;
                         break;
                     case Keys.Down:
@@ -1371,14 +1512,14 @@ namespace NotGCalc
 
                             if (tensor.size.Height - 1 < tensor_coords.Y)
                                 tensor.Magnate(TensorPiece.side.bottom);
-                            cursor = tensor.array[tensor_coords.Y][tensor_coords.X].pieces[0];
+                            cursor = tensor.array[tensor_coords.Y][tensor_coords.X][0];
                         }
-                        else cursor = cursor.sub.pieces.Any() ? cursor.sub.pieces[0] : move_down(cursor);
+                        else cursor = cursor.sub.pieces.Any() ? cursor.sub[0] : move_down(cursor);
                         
                         //CurrentIContainer = cursor.Interpret().Container;
                         break;
                     case Keys.Left:
-                        if (cursor.group.parent is TensorPiece && cursor.group.pieces[0].Equals(cursor))
+                        if (cursor.group.parent is TensorPiece && cursor.group[0].Equals(cursor))
                         {
                             tensor_coords.X--;
                             var tensor = cursor.group.parent as TensorPiece;
@@ -1388,9 +1529,9 @@ namespace NotGCalc
                                 tensor_coords.X = 0;
                                 tensor.Magnate(TensorPiece.side.left);
                             }
-                            cursor = tensor.array[tensor_coords.Y][tensor_coords.X].pieces[0];
+                            cursor = tensor.array[tensor_coords.Y][tensor_coords.X][0];
                         }
-                        else if (cursor.group.parent is FunctionPiece && cursor.group.pieces[0].Equals(cursor))
+                        else if (cursor.group.parent is FunctionPiece && cursor.group[0].Equals(cursor))
                             cursor = cursor.group.parent;
                         else
                         {
@@ -1398,14 +1539,15 @@ namespace NotGCalc
                             {
                                 cursor = cursor.group.pieces.FindIndex(q => q.Equals(cursor)) == 0 ?
                                 cursor.group.parent == null ? cursor : cursor.group.parent :
-                                cursor.group.pieces[cursor.group.pieces.FindIndex(q => q.Equals(cursor)) - 1]; 
+                                cursor.group[cursor.group.pieces.FindIndex(q => q.Equals(cursor)) - 1]; 
                             }
-                            catch (Exception) { }
+                            catch (Exception) { Debug.WriteLine("อย่าสนใจ^^"); }
                         }
 
                         //CurrentIContainer = cursor.Interpret().Container;
                         break;
                     case Keys.Right:
+                        var leaving_BracketPiece = cursor.val == ")";
                         if (cursor.group.parent is TensorPiece && cursor.group.pieces.Last().Equals(cursor))
                         {
                             tensor_coords.X++;
@@ -1414,21 +1556,23 @@ namespace NotGCalc
                             if (tensor.size.Width - 1 < tensor_coords.X)
                                 tensor.Magnate(TensorPiece.side.right);
 
-                            cursor = tensor.array[tensor_coords.Y][tensor_coords.X].pieces[0];
+                            cursor = tensor.array[tensor_coords.Y][tensor_coords.X][0];
                             //cursor.group.parent = (cursor.group.parent as TensorPiece).Magnate(TensorPiece.side.right, cursor);
                         }
-                        else if (cursor is FunctionPiece)
-                            cursor = (cursor as FunctionPiece).operand.pieces[0];
                         else
                         {
-                            if (cursor.group.parent is FunctionPiece && cursor.group.pieces.Last().Equals(cursor))
-                                cursor = cursor.group.parent;
-                            cursor = move_right(cursor);
+                            if (cursor is FunctionPiece)
+                                cursor = (cursor as FunctionPiece).operand[0];
+                            else
+                            {
+                                if (cursor.group.parent is FunctionPiece && cursor.group.pieces.Last().Equals(cursor))
+                                    cursor = cursor.group.parent;
+                                cursor = move_right(cursor);
+                            }
+                            if (cursor is BracketPiece && !leaving_BracketPiece)
+                                cursor = (cursor as BracketPiece).inside[0];
                         }
-
-                        //if (cursor is BracketPiece)
-                        //    cursor = (cursor as BracketPiece).inside.pieces[0];
-
+                        
                         //CurrentIContainer = cursor.Interpret().Container;
                         break;
 
@@ -1477,7 +1621,7 @@ namespace NotGCalc
                         else if (cursor is TensorPiece)
                         {
                             tensor_coords = new Point(0, 0);
-                            cursor = (cursor as TensorPiece).array[0][0].pieces[0];
+                            cursor = (cursor as TensorPiece).array[0][0][0];
                         }
                         break;
                     case Keys.Oem1:
@@ -1497,13 +1641,20 @@ namespace NotGCalc
                         Canvas.Invalidate();
                         return;
                     case Keys.D0 when shift:
-                        if (cursor.group.pieces.Count > 1 && cursor.group.pieces[cursor.group.pieces.IndexOf(cursor) + 1].val == ")")
+                        if (cursor.group.pieces.Count > 1 && cursor.group.pieces.Last() != cursor && cursor.group[cursor.group.pieces.IndexOf(cursor) + 1].val == ")")
+                            cursor = cursor.group[cursor.group.pieces.IndexOf(cursor) + 1];
+                        else
                         {
                             next_piece_type = piece_type.operator_sign;
+                            var pre_val = cursor.group.parent is BracketPiece;
                             AddPiece(")");
+                            if (pre_val)
+                                cursor = cursor.group.parent;
+                            if (cursor.group.parent is FunctionPiece &&
+                                ((cursor.group.parent as FunctionPiece).written || !(cursor.group.parent as FunctionPiece).built_in))
+                                cursor = cursor.group.parent;
                             next_piece_type = piece_type.ambiguous;
                         }
-                        else cursor = cursor.group.pieces[cursor.group.pieces.IndexOf(cursor) + 1];
 
                         Canvas.Invalidate();
                         return;
@@ -1541,13 +1692,6 @@ namespace NotGCalc
                         AddPiece("+");
                         next_piece_type = piece_type.ambiguous;
                         break;
-                    case Keys.Oemplus when !shift:
-                        //Roots.Add(new Group(null, 'n'));
-                        next_piece_group = piece_group.none;
-                        next_piece_type = piece_type.operator_sign;
-                        AddPiece("=");
-                        next_piece_type = piece_type.ambiguous;
-                        break;
                     case Keys.Oemcomma when shift:
                         //Roots.Add(new Group(null, 'n'));
                         next_piece_group = piece_group.none;
@@ -1555,8 +1699,14 @@ namespace NotGCalc
                         AddPiece("<");
                         next_piece_type = piece_type.ambiguous;
                         break;
-                    case Keys.OemPeriod when shift:
+                    case Keys.Oemcomma when !shift:
                         //Roots.Add(new Group(null, 'n'));
+                        next_piece_group = piece_group.none;
+                        next_piece_type = piece_type.operator_sign;
+                        AddPiece(",");
+                        next_piece_type = piece_type.ambiguous;
+                        break;
+                    case Keys.OemPeriod when shift:
                         next_piece_group = piece_group.none;
                         next_piece_type = piece_type.operator_sign;
                         AddPiece(">");
@@ -1576,6 +1726,17 @@ namespace NotGCalc
                         group2.pieces.Remove(cursor);
                         cursor = new OperatorPiece("<=", group2);
                         group2.pieces.Insert(i2, cursor);
+                        break;
+                    case Keys.Oemplus when !shift://this case must go after the other Keys.OemPlus cases because the conditions are ordered chronologically
+                        //Roots.Add(new Group(null, 'n'));
+                        next_piece_group = piece_group.none;
+                        next_piece_type = piece_type.operator_sign;
+                        if (cursor.val == ">")
+                            AddPiece(">=");
+                        if (cursor.val == "<")
+                            AddPiece("<=");
+                        AddPiece("=");
+                        next_piece_type = piece_type.ambiguous;
                         break;
                     case Keys.D8 when shift:
                         next_piece_group = piece_group.none;
@@ -1609,15 +1770,15 @@ namespace NotGCalc
                                 cursor.group.parent is FunctionPiece && 
                                 !(cursor.group.parent as FunctionPiece).built_in && 
                                 cursor.group.pieces.Count == 2 && 
-                                cursor.group.pieces[0].val == "(" && 
-                                cursor.group.pieces[1].val == ")"
+                                cursor.group[0].val == "(" && 
+                                cursor.group[1].val == ")"
                                 )
                             {
                                 cursor = cursor.group.parent;
                             }
                             if (cursor.group.pieces.TakeWhile(p => p != cursor).Count() > 1)
                             {
-                                new_cursor = cursor.group.pieces[cursor.group.pieces.IndexOf(cursor) - 1];
+                                new_cursor = cursor.group[cursor.group.pieces.IndexOf(cursor) - 1];
                                 cursor.group.pieces.Remove(cursor);
                                 cursor = new_cursor;
                             }
@@ -1635,6 +1796,22 @@ namespace NotGCalc
                             }
                         }
                         next_piece_group = piece_group.none;
+                        break;
+
+                    case Keys.Menu:
+                        cursor.special = !cursor.special;
+                        //if (cursor.group.parent is FunctionPiece && cursor.group.parent.val.Contains("integral") && cursor.val == "Keyd" && cursor.special)
+                        //{
+                        //    if (cursor.group.parent.group.pieces.IndexOf(cursor.group.parent) + 2 < cursor.group.parent.group.pieces.Count)
+                        //        cursor.group.parent.group.pieces.InsertRange(cursor.group.parent.group.pieces.IndexOf(cursor.group.parent) + 1, 
+                        //            cursor.group.pieces.Skip(cursor.group.pieces.IndexOf(cursor)));
+                        //    else
+                        //        cursor.group.parent.group.pieces.AddRange(cursor.group.pieces.Skip(cursor.group.pieces.IndexOf(cursor)));
+
+                        //    var new_group_ref = cursor.group.parent.group;
+                        //    cursor.group.pieces.Remove(cursor);
+                        //    cursor.group = new_group_ref;
+                        //}
                         break;
                 }
                 
@@ -1685,7 +1862,7 @@ namespace NotGCalc
                 AddPiece(func_name);
                 Canvas.Invalidate();
             }
-
+            
             void AddPiece(string piece_name)
             {
                 Func<string, Group, Piece> new_piece = (name, group) =>
@@ -1703,7 +1880,7 @@ namespace NotGCalc
                         case piece_type.tensor:
                             return new TensorPiece(group);
                         case piece_type.operator_sign:
-                            return new OperatorPiece(name, group); ;
+                            return new OperatorPiece(name, group);
                         default:
                             throw new DevError("DevError: ambiguous piece type");
                     }
@@ -1721,7 +1898,7 @@ namespace NotGCalc
                         break;
                     case piece_group.none:
                         cursor.group.pieces.Insert(cursor.group.pieces.IndexOf(cursor) + 1, new_piece(piece_name, cursor.group));
-                        cursor = cursor.group.pieces[cursor.group.pieces.IndexOf(cursor) + 1];
+                        cursor = cursor.group[cursor.group.pieces.IndexOf(cursor) + 1];
                         break;
                     default:
                         cursor.group.pieces.Add(new_piece(piece_name, cursor.group));
@@ -1732,27 +1909,54 @@ namespace NotGCalc
                 cursor.group.pieces.RemoveAll(p => p.val == "null");
 
                 if (cursor is TensorPiece)
-                    cursor = (cursor as TensorPiece).array[0][0].pieces[0];
+                    cursor = (cursor as TensorPiece).array[0][0][0];
                 if (cursor is FunctionPiece)
                 {
                     if (!(cursor as FunctionPiece).built_in)
                         cursor.group.pieces.RemoveAt(cursor.group.pieces.Count - 2);
-                    cursor = (cursor as FunctionPiece).operand.pieces[0];
+                    cursor = (cursor as FunctionPiece).operand[0];
                 }
                 if (cursor is BracketPiece)
-                    cursor = (cursor as BracketPiece).inside.pieces[0];
+                    cursor = (cursor as BracketPiece).inside[0];
                 if (cursor.val == "(")
                 {
                     next_piece_type = piece_type.operator_sign;
                     AddPiece(")");
                     next_piece_type = piece_type.ambiguous;
-                    cursor = cursor.group.pieces[cursor.group.pieces.IndexOf(cursor) - 1];
+                    //if (//gotta make sure this can be done because the next statement down could mess this up
+                    //    cursor.group.pieces.IndexOf(cursor) > 0 && 
+                    //    cursor.group[cursor.group.pieces.IndexOf(cursor) - 1].val == "("
+                    //   )
+                    cursor = cursor.group[cursor.group.pieces.IndexOf(cursor) - 1];
+                }
+                    
+                //check is the new Piece completes a written function
+                if (cursor.group.pieces.Count() > 2)
+                {//can't have a Dictionary here because Keys might repeat
+                    var names = producti.arrprd(cursor.group.pieces, (s, p) => s.Add(new Tuple<char, Piece>(p.val == "" ? '\0' : p.val.Last(), p)), new List<Tuple<char, Piece>>());
+                    var func_reader = new List<Piece>();
+
+                    for(int i = 0; i < Globals.functions.Count; i++)
+                    {
+                        var func_name = Globals.functions.ToList()[i].Key.Substring(Globals.functions.ToList()[i].Key.IndexOf(')') + 1);
+                        for (int j = 0; j < names.Count; j++)
+                            if (func_name.Length <= names.Count - j && names.GetRange(j, func_name.Length).Zip(func_name, (n, f) => n.Item1 == f).All(e => e))
+                            {
+                                var func = new FunctionPiece(Globals.functions.ToList()[i].Key, cursor.group);
+                                var pieces = names.GetRange(j, func_name.Length).Select(n => n.Item2);
+                                func_reader.AddRange(pieces);
+                                cursor.group.pieces.Insert(cursor.group.pieces.IndexOf(cursor), func);
+                                foreach (var p in pieces)
+                                    cursor.group.pieces.Remove(p);
+                                cursor = func;
+                            }
+                    }
                 }
 
                 next_piece_group = piece_group.none;
             }
             
-            public Equation Interpret()
+            public List<Equation> Interpret()
             {
                 var cout = Root.Interpret();
 
@@ -1761,9 +1965,9 @@ namespace NotGCalc
                 //if (IsFunctionIdentity) //TODO: move IsFunctionIdentity into Equation
                 //{
                 //    var equation = new Equation();
-                //    var function = Root.pieces[0] as FunctionPiece;
+                //    var function = Root[0] as FunctionPiece;
                 //    var identity = new Group(null) { pieces = Root.pieces.Skip(2).ToList() }.localise(function); 
-                //    var parameter = (function.operand.pieces[0] as BracketPiece).inside.localise(function);
+                //    var parameter = (function.operand[0] as BracketPiece).inside.localise(function);
 
                 //    equation.Add(new Function
                 //        (
@@ -1789,7 +1993,7 @@ namespace NotGCalc
                 //}
                 #endregion
                 //only able to interpret the first equation atm
-                return cout.ElementAt(0);
+                return cout.ToList();
             }
             public BracketPiece DisplayFormula(Formula f, Group group = null)
             {
@@ -1806,22 +2010,23 @@ namespace NotGCalc
                     if (t.denominator.Count > 1)
                     {
                         cout.inside.pieces.Add(new OperatorPiece("/", cout.inside));
-                        addend[0] = cout.inside.pieces[0].super;
+                        addend[0] = cout.inside[0].super;
                     }
                     foreach (var v in t.numerator.Skip(1))
                     {
                         switch (v)
                         {
                             case Tensor tensor when tensor.DimDim == 0://scalar
-                                addend[0].pieces.Add(new ScalarPiece(tensor.name == null ? (tensor.parts[0][0] as Scalar).output.Value + "" : tensor.name,
-                                    group, tensor.Index == null ? null : DisplayFormula(tensor.Index).inside.pieces));
+                                var t1 = tensor.Value(Globals.values);
+                                addend[0].pieces.Add(new ScalarPiece(tensor.known ? (tensor.Value(Globals.values).parts[0][0] as Scalar).output.Value + "" : tensor.name,
+                                    group, tensor.Index == null ? null : DisplayFormula(tensor.Index, group).inside.pieces));
                                 if (tensor.Index != null)
                                     addend[0].pieces.Last().super.pieces.ForEach(s => s.group = addend[0].pieces.Last().super);
                                 break;
                             case Tensor tensor when tensor.DimDim > 0://tensor/matrix
-                                addend[0].pieces.Add(new TensorPiece(group));
+                                addend[0].pieces.Add(new TensorPiece(group, new Size(tensor.cols, tensor.parts.Count)));
                                 (addend[0].pieces.Last() as TensorPiece).array = tensor.parts.ConvertAll(r => r.ConvertAll(c =>
-                                { var tf = new Formula(null); tf.Add(c.Value(Globals.values)); return DisplayFormula(tf).inside; }));
+                                { var tf = new Formula(null); tf.Add(c.Value(Globals.values)); return DisplayFormula(tf, group).inside; }));
                                 break;
                             case Function function://function
                                 addend[0].pieces.Add(new FunctionPiece(function.name, group));
@@ -1847,7 +2052,7 @@ namespace NotGCalc
                     }
                     if (t.denominator.Count > 1)
                     {
-                        addend[0] = cout.inside.pieces[0].sub;
+                        addend[0] = cout.inside[0].sub;
                         foreach (var v in t.denominator.Skip(1))
                         {
                             switch (v)
@@ -1883,6 +2088,12 @@ namespace NotGCalc
                 }
                 return cout;
             }
+            public List<Equation> Output()
+            {
+                var cout = Interpret();
+                cout.ForEach(c => c.Evaluate());
+                return cout;
+            }
 
             public void OnClick(object sender, EventArgs e)
             {
@@ -1901,6 +2112,10 @@ namespace NotGCalc
                 if (((Tile)Parent.Controls[Parent.Controls.Count - 1]).TextInput.Text != "")
                 {
                     Parent.Controls.Add(new Tile(Parent, new Point(Canvas.Location.X, Canvas.Location.Y + Canvas.Height)));
+                    (Parent.Parent as Window).GuideLines.Add(new List<List<pontus>>[4]);
+                    for (int i = 0; i < 4; i++)
+                        (Parent.Parent as Window).GuideLines.Last()[i] = new List<List<pontus>>();
+                    (Parent.Parent as Window).GraphContents.Add(new Dictionary<string, figura>());
                 }
                 else
                 {
@@ -1909,6 +2124,9 @@ namespace NotGCalc
                         Parent.Controls.RemoveAt(Parent.Controls.Count - 1); //the TextInput
                         Parent.Controls.RemoveAt(Parent.Controls.Count - 1); //the Tile
                         Parent.Controls.RemoveAt(Parent.Controls.Count - 1); //the Canvas (all of these were added to the controls)
+
+                        (Parent.Parent as Window).GuideLines.RemoveAt((Parent.Parent as Window).GuideLines.Count - 1);//the set of guidelines associateed with that tile
+                        (Parent.Parent as Window).GraphContents.RemoveAt((Parent.Parent as Window).GraphContents.Count - 1);//the set of graph contents associateed with that tile
                     }
                 }
 
@@ -1917,7 +2135,7 @@ namespace NotGCalc
                 //out the 3 in the denominator, / 3 because adding a tile will add 3 controls, * Size.Height / Parent.Height to get height of TilePane percentage 
                 //Debug.Write("[" + ((VScrollBar)Parent.Controls[0]).Maximum + "'" + (int)((Parent.Controls.Count + 2.0) * Size.Height * 10 / (3 * Parent.Height)) + "]");
             }
-
+            
             /// <summary>
             /// Resize the image to the specified width and height.
             /// </summary>
@@ -1948,6 +2166,27 @@ namespace NotGCalc
                 }
 
                 return cout as Image;
+            }
+            static Image Recolour(Image cin, Color before, Color after)
+            {
+                var cm = new ColorMatrix(new float[][]//identity matrix with extra dimension for translation towards another colour
+                    {
+                        new float[] { 1,                  0,                  0,                  0,                  0 },
+                        new float[] { 0,                  1,                  0,                  0,                  0 },
+                        new float[] { 0,                  0,                  1,                  0,                  0 },
+                        new float[] { 0,                  0,                  0,                  1,                  0 },
+                        new float[] { after.R - before.R, after.G - before.G, after.B - before.B, after.A - before.A, 1 }
+                    });
+                //ImageAttributes class is used as a protocol for manipulating Bitmaps so we have to have our matrix interact with it like this
+                var ia = new ImageAttributes();
+                ia.SetColorMatrix(cm);
+                
+                var cout = new Bitmap(cin.Width, cin.Height);
+                var cout_Graphics = Graphics.FromImage(cout);
+                //draw the old imagae onto itself except manipulated as per our ImageAttributes 'ia'
+                cout_Graphics.DrawImage(cin, new Rectangle(0, 0, cin.Width, cin.Height), 0, 0, cin.Width, cin.Height, GraphicsUnit.Pixel, ia);
+
+                return cout;
             }
         }
     }

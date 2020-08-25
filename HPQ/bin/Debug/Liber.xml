@@ -104,6 +104,9 @@
         <member name="F:Liber.Engine.form.Iinv">
             <summary>inverse of inertia tensor</summary>
         </member>
+        <member name="M:Liber.Engine.pontus.#ctor(System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Drawing.Color,System.Windows.Forms.Control,System.Boolean,System.Nullable{System.Int32},Liber.Engine.tetrahedron,System.Single,System.Boolean,System.Boolean)">
+            <summary> We're basically just deep-copying at this point </summary>
+        </member>
         <member name="M:Liber.Engine.pontus.vr">
             <summary>fake coordinates are changed to be the same as the real coordinates</summary>
         </member>

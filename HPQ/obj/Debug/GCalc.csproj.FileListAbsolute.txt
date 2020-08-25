@@ -1,0 +1,17 @@
+C:\Users\Hamish\source\repos\GCalc\HPQ\bin\Debug\NotGCalc.exe.config
+C:\Users\Hamish\source\repos\GCalc\HPQ\bin\Debug\NotGCalc.exe
+C:\Users\Hamish\source\repos\GCalc\HPQ\bin\Debug\NotGCalc.pdb
+C:\Users\Hamish\source\repos\GCalc\HPQ\bin\Debug\Gma.System.MouseKeyHook.dll
+C:\Users\Hamish\source\repos\GCalc\HPQ\bin\Debug\Liber.dll
+C:\Users\Hamish\source\repos\GCalc\HPQ\bin\Debug\Liber.pdb
+C:\Users\Hamish\source\repos\GCalc\HPQ\bin\Debug\Liber.xml
+C:\Users\Hamish\source\repos\GCalc\HPQ\bin\Debug\Gma.System.MouseKeyHook.pdb
+C:\Users\Hamish\source\repos\GCalc\HPQ\obj\Debug\GCalc.csprojAssemblyReference.cache
+C:\Users\Hamish\source\repos\GCalc\HPQ\obj\Debug\NotGCalc.Properties.Resources.resources
+C:\Users\Hamish\source\repos\GCalc\HPQ\obj\Debug\GCalc_UI.Window.resources
+C:\Users\Hamish\source\repos\GCalc\HPQ\obj\Debug\GCalc.csproj.GenerateResource.cache
+C:\Users\Hamish\source\repos\GCalc\HPQ\obj\Debug\GCalc.csproj.CoreCompileInputs.cache
+C:\Users\Hamish\source\repos\GCalc\HPQ\obj\Debug\GCalc.csproj.CopyComplete
+C:\Users\Hamish\source\repos\GCalc\HPQ\obj\Debug\NotGCalc.exe
+C:\Users\Hamish\source\repos\GCalc\HPQ\obj\Debug\NotGCalc.pdb
+C:\Users\Hamish\source\repos\GCalc\HPQ\obj\Debug\GCalc.Window.resources

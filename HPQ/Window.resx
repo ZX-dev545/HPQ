@@ -364,261 +364,261 @@
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="." type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\NotGreek\..png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>resources\NotGreek\..png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="0" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\NotGreek\0.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>resources\NotGreek\0.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\NotGreek\1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>resources\NotGreek\1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\NotGreek\2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>resources\NotGreek\2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="3" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\NotGreek\3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>resources\NotGreek\3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="4" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\NotGreek\4.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>resources\NotGreek\4.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="5" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\NotGreek\5.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>resources\NotGreek\5.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="6" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\NotGreek\6.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>resources\NotGreek\6.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="7" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\NotGreek\7.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>resources\NotGreek\7.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="8" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\NotGreek\8.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>resources\NotGreek\8.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="9" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\NotGreek\9.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>resources\NotGreek\9.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="And" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\NotGreek\And.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>resources\NotGreek\And.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="BigCross" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\NotGreek\BigCross.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>resources\NotGreek\BigCross.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="BigPlus" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\NotGreek\BigPlus.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="ContourIntegral" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\NotGreek\ContourIntegral.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="CoProduct" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\NotGreek\CoProduct.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Cross" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\NotGreek\Cross.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Divide" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\NotGreek\Divide.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Dot" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\NotGreek\Dot.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="EqualSign" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\EqualSign.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Integral" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\NotGreek\Integral.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Keya" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\NotGreek\Keya.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="KeyAC" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\NotGreek\KeyAC.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Keyb" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\NotGreek\Keyb.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="KeyBC" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\NotGreek\KeyBC.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Keyc" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\NotGreek\Keyc.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="KeyCC" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\NotGreek\KeyCC.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Keyd" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\NotGreek\Keyd.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="KeyDC" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\NotGreek\KeyDC.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Keye" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\NotGreek\Keye.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="KeyEC" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\NotGreek\KeyEC.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Keyf" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\NotGreek\Keyf.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="KeyFC" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\NotGreek\KeyFC.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Keyg" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\NotGreek\Keyg.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="KeyGC" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\NotGreek\KeyGC.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Keyh" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\NotGreek\Keyh.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="KeyHC" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\NotGreek\KeyHC.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Keyi" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\NotGreek\Keyi.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="KeyIC" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\NotGreek\KeyIC.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Keyj" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\NotGreek\Keyj.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="KeyJC" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\NotGreek\KeyJC.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Keyk" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\NotGreek\Keyk.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="KeyKC" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\NotGreek\KeyKC.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Keyl" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\NotGreek\Keyl.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="KeyLC" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\NotGreek\KeyLC.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Keym" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\NotGreek\Keym.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="KeyMC" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\NotGreek\KeyMC.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Keyn" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\NotGreek\Keyn.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="KeyNC" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\NotGreek\KeyNC.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Keyo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\NotGreek\Keyo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="KeyOC" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\NotGreek\KeyOC.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Keyp" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\NotGreek\Keyp.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="KeyPC" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\NotGreek\KeyPC.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Keyq" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\NotGreek\Keyq.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="KeyQC" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\NotGreek\KeyQC.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Keyr" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\NotGreek\Keyr.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="KeyRC" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\NotGreek\KeyRC.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Keys" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\NotGreek\Keys.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="KeySC" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\NotGreek\KeySC.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Keyt" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\NotGreek\Keyt.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="KeyTC" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\NotGreek\KeyTC.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Keyu" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\NotGreek\Keyu.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="KeyUC" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\NotGreek\KeyUC.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Keyv" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\NotGreek\Keyv.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="KeyVC" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\NotGreek\KeyVC.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Keyw" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\NotGreek\Keyw.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="KeyWC" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\NotGreek\KeyWC.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Keyx" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\NotGreek\Keyx.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="KeyXC" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\NotGreek\KeyXC.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Keyy" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\NotGreek\Keyy.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="KeyYC" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\NotGreek\KeyYC.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Keyz" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\NotGreek\Keyz.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="KeyZC" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\NotGreek\KeyZC.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="LeftBracket" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\NotGreek\LeftBracket.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Minus" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\NotGreek\Minus.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Nabla" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\NotGreek\Nabla.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Or" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\NotGreek\Or.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="PiProduct" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\NotGreek\PiProduct.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Plus" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\NotGreek\Plus.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="RightBracket" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\NotGreek\RightBracket.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Summation" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\NotGreek\Summation.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>resources\NotGreek\BigPlus.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Comma" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\Comma.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>resources\NotGreek\Comma.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ContourIntegral" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>resources\NotGreek\ContourIntegral.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="CoProduct" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>resources\NotGreek\CoProduct.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Cross" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>resources\NotGreek\Cross.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Divide" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>resources\NotGreek\Divide.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Dot" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>resources\NotGreek\Dot.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="EqualSign" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>resources\NotGreek\EqualSign.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="GreaterThan" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\GreaterThan.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>resources\NotGreek\GreaterThan.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="GreaterThanOrEqualTo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\GreaterThanOrEqualTo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>resources\NotGreek\GreaterThanOrEqualTo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Integral" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>resources\NotGreek\Integral.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Keya" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>resources\NotGreek\Keya.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="KeyAC" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>resources\NotGreek\KeyAC.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Keyb" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>resources\NotGreek\Keyb.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="KeyBC" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>resources\NotGreek\KeyBC.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Keyc" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>resources\NotGreek\Keyc.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="KeyCC" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>resources\NotGreek\KeyCC.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Keyd" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>resources\NotGreek\Keyd.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="KeyDC" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>resources\NotGreek\KeyDC.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Keye" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>resources\NotGreek\Keye.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="KeyEC" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>resources\NotGreek\KeyEC.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Keyf" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>resources\NotGreek\Keyf.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="KeyFC" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>resources\NotGreek\KeyFC.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Keyg" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>resources\NotGreek\Keyg.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="KeyGC" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>resources\NotGreek\KeyGC.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Keyh" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>resources\NotGreek\Keyh.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="KeyHC" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>resources\NotGreek\KeyHC.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Keyi" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>resources\NotGreek\Keyi.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="KeyIC" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>resources\NotGreek\KeyIC.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Keyj" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>resources\NotGreek\Keyj.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="KeyJC" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>resources\NotGreek\KeyJC.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Keyk" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>resources\NotGreek\Keyk.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="KeyKC" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>resources\NotGreek\KeyKC.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Keyl" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>resources\NotGreek\Keyl.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="KeyLC" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>resources\NotGreek\KeyLC.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Keym" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>resources\NotGreek\Keym.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="KeyMC" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>resources\NotGreek\KeyMC.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Keyn" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>resources\NotGreek\Keyn.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="KeyNC" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>resources\NotGreek\KeyNC.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Keyo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>resources\NotGreek\Keyo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="KeyOC" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>resources\NotGreek\KeyOC.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Keyp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>resources\NotGreek\Keyp.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="KeyPC" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>resources\NotGreek\KeyPC.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Keyq" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>resources\NotGreek\Keyq.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="KeyQC" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>resources\NotGreek\KeyQC.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Keyr" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>resources\NotGreek\Keyr.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="KeyRC" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>resources\NotGreek\KeyRC.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Keys" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>resources\NotGreek\Keys.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="KeySC" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>resources\NotGreek\KeySC.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Keyt" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>resources\NotGreek\Keyt.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="KeyTC" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>resources\NotGreek\KeyTC.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Keyu" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>resources\NotGreek\Keyu.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="KeyUC" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>resources\NotGreek\KeyUC.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Keyv" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>resources\NotGreek\Keyv.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="KeyVC" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>resources\NotGreek\KeyVC.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Keyw" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>resources\NotGreek\Keyw.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="KeyWC" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>resources\NotGreek\KeyWC.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Keyx" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>resources\NotGreek\Keyx.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="KeyXC" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>resources\NotGreek\KeyXC.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Keyy" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>resources\NotGreek\Keyy.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="KeyYC" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>resources\NotGreek\KeyYC.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Keyz" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>resources\NotGreek\Keyz.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="KeyZC" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>resources\NotGreek\KeyZC.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LeftBracket" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>resources\NotGreek\LeftBracket.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="LessThan" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\LessThan.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>resources\NotGreek\LessThan.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="LessThanOrEqualTo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\LessThanOrEqualTo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>resources\NotGreek\LessThanOrEqualTo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Minus" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>resources\NotGreek\Minus.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Nabla" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>resources\NotGreek\Nabla.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Or" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>resources\NotGreek\Or.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PiProduct" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>resources\NotGreek\PiProduct.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Plus" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>resources\NotGreek\Plus.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="RightBracket" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>resources\NotGreek\RightBracket.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Summation" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>resources\NotGreek\Summation.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

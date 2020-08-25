@@ -1,4 +1,4 @@
-﻿namespace NotGCalc
+﻿namespace GCalc
 {
     partial class Window
     {

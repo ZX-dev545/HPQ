@@ -1091,7 +1091,14 @@ namespace GCalc
             /// <summary>
             /// What type of number this is: Scalar => 0, vector => 1 & matrix => 2.
             /// </summary>
-            public int DimDim { get { if (cols > 1) return 2; return (int)Math.Round((rows - 1) / (double)rows); } }
+            public int DimDim
+            {
+                get
+                {
+                    if (cols > 1) return 2;
+                    return (int)Math.Round((rows - 1) / (double)rows);
+                }
+            }
             /// <summary>
             /// whether or not the tensor has any unknown scalars in it.
             /// </summary>
@@ -1371,8 +1378,10 @@ namespace GCalc
 
                 var new_parts = new List<List<Scalar>>();
                 if (DimDim == 0 && cin.DimDim == 0)
-                    if(parts[0][0] is Scalar && cin.parts[0][0] is Scalar)
-                        return new Tensor(new Scalar(/*name + "£dot£" + cin.name, */(parts[0][0] as Scalar).output * (cin.parts[0][0] as Scalar).output), false, null,  name == null ? cin.name : name);
+                {
+                    if (parts[0][0] is Scalar && cin.parts[0][0] is Scalar)
+                        return new Tensor(new Scalar(/*name + "£dot£" + cin.name, */(parts[0][0] as Scalar).output * (cin.parts[0][0] as Scalar).output), false, null, name == null ? cin.name : name);
+                }
                 else if (DimDim == 0 ^ cin.DimDim == 0)
                 {
                     var scalar = new List<Tensor> { this, cin }.Find(t => t.DimDim == 0).parts[0][0] as Scalar;
@@ -1385,7 +1394,7 @@ namespace GCalc
                             new_parts[i].Add(new Scalar(/*name + "£dot£" + cin.name, */scalar.output * (tensor.parts[i][j] as Scalar).output));
                         }
                     }//this algorithm currently favours the tensor over the scalar until I establish a clear protocal of how to do this
-                    return new Tensor(new_parts.ConvertAll(r => r.ConvertAll(c => c as IValuable)), Reciprocal && cin.Reciprocal, 
+                    return new Tensor(new_parts.ConvertAll(r => r.ConvertAll(c => c as IValuable)), Reciprocal && cin.Reciprocal,
                         tensor.Index, name == null ? cin.name : name, tensor.Container);
                 }
                 else if (DimDim > 0 && cin.DimDim > 0)
@@ -1524,9 +1533,16 @@ namespace GCalc
             public bool Reciprocal { get; set; }
             public List<Formula> Operands;
             public string name { get; set; }
-            public bool known => Operands.All(o => {
-                var t1 = o.Value(Globals.values);
-                return t1.known; });
+            public bool known => Operands.All(o => 
+            {
+                try
+                {
+                    var t1 = o.Value(Globals.values);
+                    return t1.known;
+                }
+                catch (Error err) when (err.Message.Contains("unknown variable") && name.Contains("#"))
+                { return false; }
+            });
             public Formula Index { get; set; }
             public override relpair CRelation => Container == null ? new relpair() : Container.TRelation; //catch
 

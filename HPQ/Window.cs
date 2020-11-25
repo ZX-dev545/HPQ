@@ -227,7 +227,7 @@ namespace GCalc
                 for (n = n.add(new Tensor(new Scalar(1), false)); (n.parts[0][0] as Scalar).output <= (eq.Item1.Value(Globals.values).parts[0][0] as Scalar).output.Value; n = n.add(new Tensor(new Scalar(1), false)))
                 {
                     //update index_formula so that the next index is passed as the parameter of iterator
-                    (index_formula.parts[0] as Term).numerator[1] = n;//new Tensor(new Scalar(n), false);
+                    (index_formula.parts[0] as Term).numerator[0] = n;//new Tensor(new Scalar(n), false);
                     //the actual addition part
                     cout = cout.add(iterator.Value(new List<Formula> { index_formula }, Globals.values));
                 }
@@ -787,6 +787,35 @@ namespace GCalc
 
         void InitialiseInputPane()
         {
+            #region Greek Key Event Handlers
+            KeyAlpha.Click += OnInputBtnKey;
+            KeyBeta.Click += OnInputBtnKey;
+            KeyGamma.Click += OnInputBtnKey;
+            KeyDelta.Click += OnInputBtnKey;
+            KeyEpsilon.Click += OnInputBtnKey;
+            KeyZeta.Click += OnInputBtnKey;
+            KeyEta.Click += OnInputBtnKey;
+            KeyTheta1.Click += OnInputBtnKey;
+            KeyTheta2.Click += OnInputBtnKey;
+            KeyIota.Click += OnInputBtnKey;
+            KeyKappa.Click += OnInputBtnKey;
+            KeyLambda.Click += OnInputBtnKey;
+            KeyMu.Click += OnInputBtnKey;
+            KeyNu.Click += OnInputBtnKey;
+            KeyPi.Click += OnInputBtnKey;
+            KeyRho.Click += OnInputBtnKey;
+            KeyChi.Click += OnInputBtnKey;
+            KeySigma1.Click += OnInputBtnKey;
+            KeySigma2.Click += OnInputBtnKey;
+            KeyTau.Click += OnInputBtnKey;
+            KeyUpsilon.Click += OnInputBtnKey;
+            KeyPhi1.Click += OnInputBtnKey;
+            KeyPhi2.Click += OnInputBtnKey;
+            KeyXi.Click += OnInputBtnKey;
+            KeyPsi.Click += OnInputBtnKey;
+            KeyOmega.Click += OnInputBtnKey;
+            #endregion
+
             Panel[] FuncGroups = { InputPanelScalar, InputPanelCalculus, InputPanelTensor };
 
             for (int i = 0; i < 3; i++)
@@ -819,6 +848,21 @@ namespace GCalc
             }
         }
 
+        void OnInputBtnKey(object sender, EventArgs e)
+        {
+            var InputBtnKey = sender as Button;
+
+            Globals.input_pane_key = InputBtnKey.Name;
+
+            foreach (Control c in TilePane.Controls)
+            {
+                if (c == Globals.FocusedTile)
+                {
+                    (c as Tile).FromInputBtnKey(InputBtnKey.Name);
+                    (c as Tile).OnClick(c as Tile, e);
+                }
+            }
+        }
         void OnInputBtnFunc(object sender, EventArgs e)
         {
             var InputBtnFunc = sender as Button;
@@ -1041,8 +1085,10 @@ namespace GCalc
             AddToParams("z");
             AddToParams("t");
         }
-
-        List<List<List<pontus>>[]> GuideLines= new List<List<List<pontus>>[]>(); 
+        /// <summary>
+        /// each element in this list is an array with a list of lines (each line is a list of points) for each array element (dimension). Each element is for a corrosponding Tile.
+        /// </summary>
+        List<List<List<pontus>>[]> GuideLines = new List<List<List<pontus>>[]>(); 
 
         private void GraphPanel_Paint(object sender, PaintEventArgs e)
         {
@@ -1186,7 +1232,7 @@ namespace GCalc
             for (ps[3] = 0; ps[3] <= (is_parametric ? tmax - tmin : 0) / h; ps[3]++)//parametric t (2nd dimension of time)
             {
                 Equation.Remember(new Tensor(new Scalar(mag(ps[3])), false, null, "Keyt"));
-                for(int i = 0; i < 4; i++)
+                for(int i = 0; i < 3; i++)
                     Equation.Remember(new Tensor(new Scalar(mag(0)), false, null, Globals.Parameters[i].name));//apply free value
                 var free_parameter_flags = new bool[4];
                 free_parameter_flags[3] = true;//parametric t is always free and never defined by the user
@@ -1282,7 +1328,7 @@ namespace GCalc
                                                     break;
 
                                                 case 1 when v is Tensor && (v as Tensor).parts.Count == 3 &&
-                                                    eq.parts.Count == 2 && (eq.parts[0] as IContainer).parts.Count == 1 && ((eq.parts[0] as IContainer).parts[0] as IContainer).parts.Count == 3:
+                                                    eq.parts.Count == 2 && (eq.parts[0] as IContainer).parts.Count == 1 && ((eq.parts[0] as IContainer).parts[0] as IContainer).parts.Count == 2:
 
                                                     var V = v as Tensor;
                                                     var neweq = new Equation();
@@ -1433,8 +1479,8 @@ namespace GCalc
 
                         if(fact_NaN)//NaNy has to count against ps[1] in order to keep the y-line index still when no point is plotted, so it is only in the ps[1] for loop
                             NaNy++;
-                        if (GuideLines[tile_index][0].Count == 0)//if this x-line has no points and simply doesn't exist, just get rid of it.
-                            GuideLines[tile_index][0].RemoveAt(GuideLines[tile_index][0].Count - 1);
+                        //if (GuideLines[tile_index][0].Count == 0)//if this x-line has no points and simply doesn't exist, just get rid of it.
+                          //  GuideLines[tile_index][0].RemoveAt(GuideLines[tile_index][0].Count - 1);
 
                     }//y
                 }//z

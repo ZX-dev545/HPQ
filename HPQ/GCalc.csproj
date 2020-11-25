@@ -50,7 +50,6 @@
     <Compile Include="Equation.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Graphing-2.cs" />
     <Compile Include="Graphing.cs">
       <SubType>Form</SubType>
     </Compile>

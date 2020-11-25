@@ -315,7 +315,7 @@ namespace GCalc
                         scalar.output = Math.E;
                     if (val == "KeyPi")
                         scalar.output = Math.PI;
-
+                    //check if the superscript contains anything because if it's empty there will be a power of 0 - so I prevent that here
                     return new Tensor(scalar, rcp, super.pieces.Count > 0 ? super.Interpret(new Equation()) : null, number ? null : val, /*group.parent?.Interpret() is IContainer ? (IContainer)group.parent?.Interpret() :*/ null);
                 }
                 public override void draw(int x, int y, Graphics g, Piece v)
@@ -587,7 +587,7 @@ namespace GCalc
                         array.ConvertAll(r => r.ConvertAll(c => (c.pieces.Count == 1 ? c[0] is ScalarPiece ? (c[0] as ScalarPiece).number ?
                             (c[0].Interpret() as Tensor).parts[0][0] : c.Interpret(new Equation()) : c[0].Interpret() : c.Interpret(new Equation())) as IValuable)),
                         false,//group.parent is OperatorPiece ? false : group.parent.sub == group,
-                        super.Interpret(new Equation())
+                        super.pieces.Count > 0 ? super.Interpret(new Equation()) : null
                         );
                 }
 
@@ -1120,7 +1120,7 @@ namespace GCalc
                                 formulaic = pieces[i].Interpret();//SCRAPPED: make sure negative indices get put in the denominator within Piece.Interpret()
                                 //try { formulaic.Reciprocal ^= parent.val == "/" && parent.sub == this; }
                                 //catch (Exception) { Debug.WriteLine("อย่าสนใจ^^"); } //communicate across the whether or not the Piece is in the denominator of its Term
-                                interpretation.Add(formulaic);
+                                if (formulaic != null) interpretation.Add(formulaic);
                             }
                             catch (Exception e)
                             {
@@ -1798,7 +1798,7 @@ namespace GCalc
                         next_piece_group = piece_group.none;
                         break;
 
-                    case Keys.Menu:
+                    case Keys.Oem8:
                         cursor.special = !cursor.special;
                         //if (cursor.group.parent is FunctionPiece && cursor.group.parent.val.Contains("integral") && cursor.val == "Keyd" && cursor.special)
                         //{
@@ -1812,7 +1812,8 @@ namespace GCalc
                         //    cursor.group.pieces.Remove(cursor);
                         //    cursor.group = new_group_ref;
                         //}
-                        break;
+                        Canvas.Invalidate();
+                        return;
                 }
                 
                 //if (char.IsNumber(key.KeyChar) || key.KeyChar == '.')
@@ -1844,7 +1845,16 @@ namespace GCalc
                 
                 Canvas.Invalidate();
             }
-
+            /// <summary>
+            /// Handles the OnInputBtnKey event in regards to how the focused Tile should be affected.
+            /// </summary>
+            /// <param name="key_name">name of the key being clicked on</param>
+            public void FromInputBtnKey(string key_name)
+            {
+                next_piece_type = piece_type.scalar;
+                AddPiece(key_name);
+                Canvas.Invalidate();
+            }
             /// <summary>
             /// Handles the OnInputBtnFunc event in regards to how the focused Tile should be affected.
             /// </summary>

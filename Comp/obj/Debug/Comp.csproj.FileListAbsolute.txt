@@ -1,0 +1,17 @@
+C:\Users\Hamish\source\repos\GCalc\Comp\bin\Debug\Comp.exe.config
+C:\Users\Hamish\source\repos\GCalc\Comp\bin\Debug\Comp.exe
+C:\Users\Hamish\source\repos\GCalc\Comp\bin\Debug\Comp.pdb
+C:\Users\Hamish\source\repos\GCalc\Comp\bin\Debug\Gma.System.MouseKeyHook.dll
+C:\Users\Hamish\source\repos\GCalc\Comp\bin\Debug\Liber.dll
+C:\Users\Hamish\source\repos\GCalc\Comp\bin\Debug\Liber.pdb
+C:\Users\Hamish\source\repos\GCalc\Comp\bin\Debug\Liber.xml
+C:\Users\Hamish\source\repos\GCalc\Comp\bin\Debug\Gma.System.MouseKeyHook.pdb
+C:\Users\Hamish\source\repos\GCalc\Comp\obj\Debug\Comp.csprojAssemblyReference.cache
+C:\Users\Hamish\source\repos\GCalc\Comp\obj\Debug\Comp.Properties.Resources.resources
+C:\Users\Hamish\source\repos\GCalc\Comp\obj\Debug\Comp.csproj.GenerateResource.cache
+C:\Users\Hamish\source\repos\GCalc\Comp\obj\Debug\Comp.csproj.CoreCompileInputs.cache
+C:\Users\Hamish\source\repos\GCalc\Comp\obj\Debug\Comp.csproj.CopyComplete
+C:\Users\Hamish\source\repos\GCalc\Comp\obj\Debug\Comp.exe
+C:\Users\Hamish\source\repos\GCalc\Comp\obj\Debug\Comp.pdb
+C:\Users\Hamish\source\repos\GCalc\Comp\obj\Debug\GCalc_Comp.Window.resources
+C:\Users\Hamish\source\repos\GCalc\Comp\bin\Debug\WpfMath.dll

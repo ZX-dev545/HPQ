@@ -1,4 +1,3 @@
-﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.572
@@ -8,6 +7,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Liber", "..\..\..\Documents\SharpDevelop Projects\ReiynC\Liber\Liber.csproj", "{BFFDDCC2-8FCE-4336-881C-48F899867773}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GCalc", "HPQ\GCalc.csproj", "{DA900614-5EA0-405B-BC74-6A2CEC280018}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Comp", "Comp\Comp.csproj", "{C4BFF56B-CD85-4695-84E8-ECD7417B9AAD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -55,6 +56,18 @@ Global
 		{DA900614-5EA0-405B-BC74-6A2CEC280018}.Release|x64.Build.0 = Release|Any CPU
 		{DA900614-5EA0-405B-BC74-6A2CEC280018}.Release|x86.ActiveCfg = Release|Any CPU
 		{DA900614-5EA0-405B-BC74-6A2CEC280018}.Release|x86.Build.0 = Release|Any CPU
+		{C4BFF56B-CD85-4695-84E8-ECD7417B9AAD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C4BFF56B-CD85-4695-84E8-ECD7417B9AAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C4BFF56B-CD85-4695-84E8-ECD7417B9AAD}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{C4BFF56B-CD85-4695-84E8-ECD7417B9AAD}.Debug|x64.Build.0 = Debug|Any CPU
+		{C4BFF56B-CD85-4695-84E8-ECD7417B9AAD}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{C4BFF56B-CD85-4695-84E8-ECD7417B9AAD}.Debug|x86.Build.0 = Debug|Any CPU
+		{C4BFF56B-CD85-4695-84E8-ECD7417B9AAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C4BFF56B-CD85-4695-84E8-ECD7417B9AAD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C4BFF56B-CD85-4695-84E8-ECD7417B9AAD}.Release|x64.ActiveCfg = Release|Any CPU
+		{C4BFF56B-CD85-4695-84E8-ECD7417B9AAD}.Release|x64.Build.0 = Release|Any CPU
+		{C4BFF56B-CD85-4695-84E8-ECD7417B9AAD}.Release|x86.ActiveCfg = Release|Any CPU
+		{C4BFF56B-CD85-4695-84E8-ECD7417B9AAD}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

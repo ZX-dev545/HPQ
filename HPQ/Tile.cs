@@ -727,7 +727,7 @@ namespace GCalc
                         {
                             parameters = new IFormulaic[3] { super.Interpret(new Equation()), sub.Interpret(new Equation()), null };
 
-                            foreach (var i in operand.pieces.Where(o => o.val == "Keyd" && o.special && operand.pieces.IndexOf(o) + 2 == operand.pieces.Count))
+                            foreach (var i in operand.pieces.Where(o => (o.val == "Keyd" || o.val.Contains(":d")) && o.special && operand.pieces.IndexOf(o) + 2 == operand.pieces.Count))
                             {
                                 var parameter = new Formula(null);
                                 parameter.Add(operand[operand.pieces.IndexOf(i) + 1].Interpret());
@@ -735,7 +735,7 @@ namespace GCalc
                                 (parameters as IFormulaic[])[2] = operand[operand.pieces.IndexOf(i) + 1].Interpret();
                                 args[0] = new Group(this, operand.pieces.GetRange(0, operand.pieces.Count - 2)).Interpret(new Equation());
                             }
-                            if (!operand.pieces.Exists(o => o.val == "Keyd" && o.special && operand.pieces.IndexOf(o) + 2 == operand.pieces.Count))
+                            if (!operand.pieces.Exists(o => (o.val == "Keyd" || o.val.Contains(":d")) && o.special && operand.pieces.IndexOf(o) + 2 == operand.pieces.Count))
                                 throw new SyntaxError("SyntaxError: Invalid/No variable of integration");
                         }
                         if (val.Contains('#'))

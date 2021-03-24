@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C4BFF56B-CD85-4695-84E8-ECD7417B9AAD}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Comp</RootNamespace>
+    <AssemblyName>Comp</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="PresentationCore" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="WpfMath, Version=0.9.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\WpfMath.0.9.0\lib\net452\WpfMath.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Complex.cs" />
+    <Compile Include="Formula.cs" />
+    <Compile Include="Window.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Window.Designer.cs">
+      <DependentUpon>Window.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="Window.resx">
+      <DependentUpon>Window.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\Documents\SharpDevelop Projects\ReiynC\Liber\Liber.csproj">
+      <Project>{bffddcc2-8fce-4336-881c-48f899867773}</Project>
+      <Name>Liber</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\globalmousekeyhook\MouseKeyHook\MouseKeyHook.csproj">
+      <Project>{f52aa97e-180a-40ed-8f2b-09080171d6c7}</Project>
+      <Name>MouseKeyHook</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\KeyZeta.png" />
+    <None Include="Resources\KeyUpsilon.png" />
+    <None Include="Resources\KeyTheta2.png" />
+    <None Include="Resources\KeyTheta1.png" />
+    <None Include="Resources\KeyTau.png" />
+    <None Include="Resources\KeySigma2.png" />
+    <None Include="Resources\KeySigma1.png" />
+    <None Include="Resources\KeyRho.png" />
+    <None Include="Resources\KeyPsi.png" />
+    <None Include="Resources\KeyPi.png" />
+    <None Include="Resources\KeyPhi2.png" />
+    <None Include="Resources\KeyPhi1.png" />
+    <None Include="Resources\KeyOmega.png" />
+    <None Include="Resources\KeyNu.png" />
+    <None Include="Resources\KeyMu.png" />
+    <None Include="Resources\KeyLambda.png" />
+    <None Include="Resources\KeyKappa.png" />
+    <None Include="Resources\KeyIota.png" />
+    <None Include="Resources\KeyGamma.png" />
+    <None Include="Resources\KeyEta.png" />
+    <None Include="Resources\KeyEpsilon.png" />
+    <None Include="Resources\KeyDelta.png" />
+    <None Include="Resources\KeyChi.png" />
+    <None Include="Resources\KeyAlpha.png" />
+    <None Include="Resources\KeyBeta.png" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

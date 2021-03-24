@@ -1,0 +1,402 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Liber</name>
+    </assembly>
+    <members>
+        <member name="T:Liber.Engine">
+            <summary>
+            Inheriting this Form will give your class access to 3D maths and graphics algorithms.
+            This abstract class contains no Form-related methods or objects, only the extras that come
+            with my library (and all of Form's methods/fields).
+            </summary>
+        </member>
+        <member name="F:Liber.Engine.CameraVariables.g">
+            <summary>
+            camera zoom
+            </summary>
+        </member>
+        <member name="F:Liber.Engine.CameraVariables.nf">
+            <summary>
+            camera near-field
+            </summary>
+        </member>
+        <member name="F:Liber.Engine.CameraVariables.ff">
+            <summary>
+            camera far-field
+            </summary>
+        </member>
+        <member name="F:Liber.Engine.CameraVariables.fov">
+            <summary>
+            camera Frame of View
+            </summary>
+        </member>
+        <member name="F:Liber.Engine.CameraVariables.cn">
+            <summary>
+            extension of camera nozzle
+            </summary>
+        </member>
+        <member name="F:Liber.Engine.CameraVariables.rendd">
+            <summary>
+            render distance
+            </summary>
+        </member>
+        <member name="F:Liber.Engine.CameraVariables.xmr">
+            <summary>
+            x camera rotation
+            </summary>
+        </member>
+        <member name="F:Liber.Engine.CameraVariables.ymr">
+            <summary>
+            y camera rotation
+            </summary>
+        </member>
+        <member name="F:Liber.Engine.CameraVariables.zmr">
+            <summary>
+            z camera rotation
+            </summary>
+        </member>
+        <member name="F:Liber.Engine.CameraVariables.rspeed">
+            <summary>
+            camera rotation speed
+            </summary>
+        </member>
+        <member name="F:Liber.Engine.CameraVariables.mspeed">
+            <summary>
+            camera panning speed
+            </summary>
+        </member>
+        <member name="F:Liber.Engine.cam">
+            <summary>
+            Struct containing camera variables for this instance of Engine.
+            </summary>
+        </member>
+        <member name="F:Liber.Engine.projm">
+            <summary>
+            projection matrix
+            </summary>
+        </member>
+        <member name="P:Liber.Engine.form.phys">
+            <summary> whether or not this entity interacts with physics </summary>
+        </member>
+        <member name="M:Liber.Engine.form.pouri(System.Collections.Generic.List{Liber.Engine.pontus},System.Collections.Generic.List{Liber.Engine.lin},System.Collections.Generic.List{Liber.Engine.reg})">
+            <summary>Will pour all of the polygons, lines and points into each given list of polygons, 
+            lines and points respectively.</summary>
+        </member>
+        <member name="P:Liber.Engine.form.m">
+            <summary>mass</summary>
+        </member>
+        <member name="F:Liber.Engine.form.v">
+            <summary>linear velocity</summary>
+        </member>
+        <member name="F:Liber.Engine.form.F">
+            <summary>resultant linear force</summary>
+        </member>
+        <member name="F:Liber.Engine.form.omega">
+            <summary>angular velocity</summary>
+        </member>
+        <member name="F:Liber.Engine.form.tau">
+            <summary>torque (rotational force)</summary>
+        </member>
+        <member name="F:Liber.Engine.form.I">
+            <summary>inertia tensor</summary>
+        </member>
+        <member name="F:Liber.Engine.form.Iinv">
+            <summary>inverse of inertia tensor</summary>
+        </member>
+        <member name="M:Liber.Engine.pontus.#ctor(System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Drawing.Color,System.Windows.Forms.Control,System.Boolean,System.Nullable{System.Int32},Liber.Engine.tetrahedron,System.Single,System.Boolean,System.Boolean)">
+            <summary> We're basically just deep-copying at this point </summary>
+        </member>
+        <member name="M:Liber.Engine.pontus.vr">
+            <summary>fake coordinates are changed to be the same as the real coordinates</summary>
+        </member>
+        <member name="M:Liber.Engine.pontus.rv">
+            <summary>real coordinates are changed to be the same as the fake coordinates</summary>
+        </member>
+        <member name="M:Liber.Engine.pontus.requals(Liber.Engine.mathematica)">
+            <summary>whether real components are equal</summary>
+        </member>
+        <member name="M:Liber.Engine.pontus.fequals(Liber.Engine.pontus)">
+            <summary>whether every property except 'id' is equal</summary>
+        </member>
+        <member name="P:Liber.Engine.pontus.o">
+            <summary>Returns the point at the origin of the world</summary>
+        </member>
+        <member name="M:Liber.Engine.pontus.nummul(System.Double)">
+            <summary> Multiply point vector by coefficient 'b' </summary>
+        </member>
+        <member name="M:Liber.Engine.pontus.numadd(System.Double)">
+            <summary> Adds 'b' to each component of point </summary>
+        </member>
+        <member name="M:Liber.Engine.pontus.numdot(Liber.Engine.mathematica)">
+            <summary> Dot-Product point with first 3 components of 'b' </summary>
+        </member>
+        <member name="M:Liber.Engine.pontus.matdot(Liber.Engine.mathematica)">
+            <summary> Multiply each component of point by corresponding component of 'b' </summary>
+        </member>
+        <member name="M:Liber.Engine.pontus.matvec(Liber.Engine.mathematica)">
+            <summary> Cross-Product with 'b' </summary>
+        </member>
+        <member name="M:Liber.Engine.pontus.matadd(Liber.Engine.mathematica)">
+            <summary> Translate point by 'a' </summary>
+        </member>
+        <member name="M:Liber.Engine.pontus.matmat(Liber.Engine.matrix)">
+            <summary> Transform point by matrix 'm' </summary>
+        </member>
+        <member name="F:Liber.Engine.lin.Draw">
+            <summary>
+            Method used to determine the appearance of the line between (or beyond) the two PointFs.
+            </summary>
+        </member>
+        <member name="M:Liber.Engine.lin.plot(Liber.Engine,System.Windows.Forms.PaintEventArgs)">
+            <summary>
+            Plots the line segment onto its parent control.
+            </summary>
+            <param name="e"></param>
+            <param name="E"></param>
+        </member>
+        <member name="M:Liber.Engine.lin.plot(System.Drawing.Point,Liber.Engine,System.Windows.Forms.PaintEventArgs)">
+            <summary>
+            Plots the line segment onto its parent control.
+            </summary>
+            <param name="e"></param>
+            <param name="E"></param>
+            <param name="mouse_drag_delta"></param>
+        </member>
+        <member name="M:Liber.Engine.reg.planus">
+            <summary>The plane on which the polygon lies.</summary>
+        </member>
+        <member name="M:Liber.Engine.reg.pcontains(Liber.Engine.pontus)">
+            <summary>Returns whether polygon contains the point 'p' - only works if polygon is a triangle.</summary>
+        </member>
+        <member name="M:Liber.Engine.via.#ctor(Liber.Engine.pontus,Liber.Engine.pontus)">
+            <summary>New via travelling from p to q</summary>
+        </member>
+        <member name="M:Liber.Engine.via.intersect(Liber.Engine.via)">
+            <summary>
+            Finds the intersection of this via with another via or line.
+            If there is none, a vector with 'NaN' as its components is returned.
+            </summary>
+        </member>
+        <member name="M:Liber.Engine.via.intersect(Liber.Engine.pontus)">
+            <summary>
+            Finds the intersection of this via with a point.
+            If there is none, a point with 'NaN' as its components is returned.
+            </summary>
+        </member>
+        <member name="M:Liber.Engine.via.intersect(Liber.Engine.lin)">
+            <summary>
+            Finds the intersection of this via with another via or line.
+            If there is none, a vector with 'NaN' as its components is returned.
+            </summary>
+        </member>
+        <member name="M:Liber.Engine.via.intersect(Liber.Engine.planus)">
+            <summary>
+            Finds the intersection of this via with a plane.
+            If there is none, a vector with 'NaN' as its components is returned.
+            </summary>
+        </member>
+        <member name="M:Liber.Engine.via.intersect(Liber.Engine.figura)">
+            <summary>
+            Finds the intersection of this via with any figura except a form.
+            If it recieves a form as its input, then a point with 'NaN' as its components is returned.
+            If there is none, a point with 'NaN' as its components is returned.
+            </summary>
+        </member>
+        <member name="P:Liber.Engine.matrix.xl">
+            <summary>number of columns</summary>
+        </member>
+        <member name="P:Liber.Engine.matrix.yl">
+            <summary>number of rows</summary>
+        </member>
+        <member name="M:Liber.Engine.matrix.empty">
+            <summary>returns a new empty matrix. 'new matrix()' will return a matrix with a null array.</summary>
+        </member>
+        <member name="M:Liber.Engine.matrix.rows">
+            <summary>
+            fills out all the zeros
+            </summary>
+            <returns>a list of the rows (each row is a list aswell)</returns>
+        </member>
+        <member name="M:Liber.Engine.matrix.columns">
+            <summary>
+            fills out all the zeros and flips the matrix sideways
+            </summary>
+            <returns>a list of the columns (each column is a list aswell)</returns>
+        </member>
+        <member name="M:Liber.Engine.matrix.neg">
+            <summary>multiplies every vaslue in the matrix by -1 </summary>
+        </member>
+        <member name="M:Liber.Engine.matrix.matmin">
+            <summary>matrix of minors</summary>
+        </member>
+        <member name="M:Liber.Engine.matrix.psy(System.Int32,System.Int32,System.Object[],System.Func{System.Int32,System.Int32,System.Object[],System.Double})">
+            <summary>A matrix constructed from the output of 'func' and 'cin' as an array containing that function's parameters</summary>
+        </member>
+        <member name="M:Liber.Engine.producti.sum(System.Int32@,System.Int32,System.Object[],System.Func{System.Int32,System.Object[],System.Double})">
+            <summary>adds together the output from every iteration of the function 'func' from the current value of 'counter' to 'finish'.
+            The function must take the counter as its first parameter, then all other parameters are to be cheld in the dynamic array parameter</summary>
+        </member>
+        <member name="M:Liber.Engine.producti.sum(System.Object@,System.Int32,System.Object[],System.Func{System.Object[],System.Double})">
+            <summary>adds together the output from every iteration of the function 'func' from the current value of 'counter' to 'finish'.
+            All parameters of the function are to be cheld in the dynamic array parameter, the first element of which is the counter as an integer.</summary>
+        </member>
+        <member name="M:Liber.Engine.producti.pi(System.Int32@,System.Int32,System.Object[],System.Func{System.Int32,System.Object[],System.Double})">
+            <summary>adds together the output from every iteration of the function 'func' from the current value of 'counter' to 'finish'.
+            The function must take the counter as its first parameter, then all other parameters are to be cheld in the dynamic array parameter</summary>
+        </member>
+        <member name="M:Liber.Engine.producti.pi(System.Object@,System.Int32,System.Object[],System.Func{System.Object[],System.Double})">
+            <summary>multiplies together the output from every iteration of the function 'func' from the current value of 'counter' to 'finish'.
+            All parameters of the function are to be cheld in the dynamic array parameter, the first element of which is the counter as an integer.</summary>
+        </member>
+        <member name="M:Liber.Engine.producti.matprd``1(System.Int32@,System.Int32,System.Object[],System.Func{System.Int32,System.Object[],``0},System.Func{Liber.Engine.mathematica,``0,Liber.Engine.mathematica})">
+            <summary>adds together the output from every iteration of the function 'func' from the current value of 'counter' to 'finish'.
+            The function must take the counter as its first parameter, then all other parameters are to be cheld in the dynamic array parameter</summary>
+        </member>
+        <member name="M:Liber.Engine.producti.matprd``1(System.Object@,System.Int32,System.Object[],System.Func{System.Object[],``0},System.Func{Liber.Engine.mathematica,``0,Liber.Engine.mathematica})">
+            <summary>adds together the output from every iteration of the function 'func' from the current value of 'counter' to 'finish'.
+            All parameters of the function are to be cheld in the dynamic array parameter, the first element of which is the counter as an integer.</summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:Liber.Engine.producti.arrprd``2(System.Collections.Generic.List{``0},System.Func{``0,``0,``0},System.Func{``0,``1})" -->
+        <!-- Badly formed XML comment ignored for member "M:Liber.Engine.producti.arrprd``2(System.Collections.Generic.List{``0},System.Func{``1,``0,``1},System.Char)" -->
+        <!-- Badly formed XML comment ignored for member "M:Liber.Engine.producti.arrprd``2(System.Collections.Generic.List{``0},System.Func{``1,``0,``1},``1)" -->
+        <!-- Badly formed XML comment ignored for member "M:Liber.Engine.producti.arrprd``1(System.Collections.Generic.List{``0},System.Func{``0,``0,System.Object})" -->
+        <!-- Badly formed XML comment ignored for member "M:Liber.Engine.producti.arrprd``1(System.Collections.Generic.List{``0},System.Func{``0,``0,System.Object},``0)" -->
+        <member name="M:Liber.Engine.vector.length">
+            <summary> Find length of vector </summary>
+        </member>
+        <member name="M:Liber.Engine.vector.unit">
+            <summary> Converts to unit vector </summary>
+        </member>
+        <member name="M:Liber.Engine.vector.vect(System.Double)">
+            <summary> Multiplies length by 'mag' </summary>
+        </member>
+        <member name="M:Liber.Engine.vector.ToArray">
+            <summary> Convert to array of components </summary>
+        </member>
+        <member name="M:Liber.Engine.vector.toquat">
+            <summary> Convert to quaternion with _real value of 0 </summary>
+        </member>
+        <member name="M:Liber.Engine.vector.inv">
+            <summary> Multiply each component by -1 </summary>
+        </member>
+        <member name="M:Liber.Engine.vector.rpl">
+            <summary> Reciprocal each component </summary>
+        </member>
+        <member name="M:Liber.Engine.vector.f">
+            <summary> Make components look like floats </summary>
+        </member>
+        <member name="P:Liber.Engine.vector.o">
+            <summary>3D origin vector</summary>
+        </member>
+        <member name="M:Liber.Engine.vector.quatrot(Liber.Engine.vector,Liber.Engine.vector,System.Double)">
+            <summary>
+            Rotate around an axis pointing from the origin using a unit quaternion.
+            </summary>
+            <param name="axis">Axis around which vector is rotated</param>
+            <param name="v">Vector to be rotated</param>
+            <param name="theta">Angle by which vector is rotated in radians</param>
+            <returns></returns>
+        </member>
+        <member name="M:Liber.Engine.vector.quatrot(Liber.Engine.via,Liber.Engine.vector,System.Double)">
+            <summary>
+            Rotate around an arbitrary axis in 3D space using a unit quaternion.
+            </summary>
+            <param name="axis">Axis around which vector is rotated</param>
+            <param name="v">Vector to be rotated</param>
+            <param name="theta">Angle by which vector is rotated in radians</param>
+            <returns></returns>
+        </member>
+        <member name="M:Liber.Engine.vector.quatrot(Liber.Engine.quaternion,Liber.Engine.via,System.Double)">
+            <summary>
+            Rotate around an arbitrary axis in 3D space using a unit quaternions.
+            </summary>
+            <param name="axis">Axis around which quaternion is rotated</param>
+            <param name="v">Quaternion to be rotated</param>
+            <param name="theta">Angle by which quaternion is rotated in radians</param>
+            <returns></returns>
+        </member>
+        <member name="M:Liber.Engine.vector.transmat">
+            <summary>transposed vector as a matrix</summary>
+        </member>
+        <member name="M:Liber.Engine.vector.mat">
+            <summary>vector as a matrix with one column</summary>
+        </member>
+        <member name="M:Liber.Engine.vector.nummul(System.Double)">
+            <summary> Multiply vector by coefficient 'b' </summary>
+        </member>
+        <member name="M:Liber.Engine.vector.numadd(System.Double)">
+            <summary> Adds 'b' to each component of vector </summary>
+        </member>
+        <member name="M:Liber.Engine.vector.numdot(Liber.Engine.mathematica)">
+            <summary> Dot-Product vector with first 3 components of 'b' </summary>
+        </member>
+        <member name="M:Liber.Engine.vector.matdot(Liber.Engine.mathematica)">
+            <summary> Multiply each component of vector by corresponding component of 'b' </summary>
+        </member>
+        <member name="M:Liber.Engine.vector.matvec(Liber.Engine.mathematica)">
+            <summary> Cross-Product with 'b' </summary>
+        </member>
+        <member name="M:Liber.Engine.vector.matadd(Liber.Engine.mathematica)">
+            <summary> Translate vector by 'a' </summary>
+        </member>
+        <member name="M:Liber.Engine.vector.matmat(Liber.Engine.matrix)">
+            <summary> Transform vector by matrix 'm' </summary>
+        </member>
+        <member name="M:Liber.Engine.planus.#ctor(Liber.Engine.vector,Liber.Engine.pontus)">
+            <summary>Takes the normal vector 'v' and any point on the plane 'P'.</summary>
+        </member>
+        <member name="M:Liber.Engine.planus.numdot(Liber.Engine.mathematica)">
+            <summary>Returns dot product of normal vector with first 3 components of mathematica 'd'.</summary>
+        </member>
+        <member name="M:Liber.Engine.quaternion.tovect">
+            <summary> Returns the vector component (i, j, k) of the quaternion. </summary>
+        </member>
+        <member name="M:Liber.Engine.dcpy``1(``0)">
+            <summary>
+            Deep copy
+            </summary>
+            <typeparam name="T">Type of object to be deep copied</typeparam>
+            <param name="cin">the object being deep copied</param>
+            <returns></returns>
+        </member>
+        <member name="T:Liber.Engine.sort">
+            <summary>
+            Class containing a bunch of functions related to sorting.
+            </summary>
+        </member>
+        <member name="M:Liber.Engine.sort.qsort``1(System.Collections.Generic.List{``0},System.Func{``0,``0,System.Boolean})">
+            <summary>
+            Quicksort algorithm for lists/enumerables of specified type <paramref name="a"/>. 
+            Sorts in whatever order the function <paramref name="comp"/> decides to discriminate by.
+            If comp returns true, then the second parameter will have a greater index than the first parameter
+            </summary>
+        </member>
+        <member name="M:Liber.Engine.sort.qsort``2(System.Collections.Generic.List{``0},System.Func{``0,``1},System.Func{``1,``1,System.Boolean})">
+            <summary>
+            Quicksort algorithm for lists/enumerables of specified type <paramref name="a"/>.
+            Applies the function <paramref name="proc"/> across the whole list and sorts in 
+            whatever order the function <paramref name="comp"/> decides to discriminate by.
+            If comp returns true, then the second parameter will have a greater index than 
+            the first parameter.
+            </summary>
+            <typeparam name="I">input datatype</typeparam>
+            <typeparam name="T">processed datatype to be compared</typeparam>
+            <param name="a">input list</param>
+            <param name="proc">function to apply across whole list</param>
+            <param name="comp"></param>
+            <returns>A sorted version of the list which has also had the <paramref name="proc"/> function applied to it.</returns>
+        </member>
+        <member name="M:Liber.Engine.sort.qsort``2(System.Collections.Generic.List{``0},System.Func{``0,``1})">
+            <summary>
+            Quicksort algorithm which sorts from highest to lowest, in order of respective output of <paramref name="proc"/>.
+            Returns a list of Tuples containing the elememts and their respective outputs of <paramref name="proc"/>.
+            </summary>
+            <typeparam name="I">input</typeparam>
+            <typeparam name="T">throughput</typeparam>
+            <param name="a"></param>
+            <param name="proc"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

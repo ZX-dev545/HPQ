@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace GCalc
+namespace GCalc_UI
 {
     static class Program
     {
